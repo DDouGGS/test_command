@@ -1,0 +1,8 @@
+{
+    "requires": [
+        "src/jobs/scripts/init.inc.php"
+    ],
+    "testNamespace": "tests\\",
+    "baseFolder": "/home/douglas/HTML/command_line_testing/",
+    "testFolder": "/home/douglas/HTML/command_line_testing/tests/"
+}

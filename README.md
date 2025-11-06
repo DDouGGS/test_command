@@ -1,4 +1,4 @@
-# command_line_testing
+# test_command
 Biblioteca para testes via linha de comandos
 
 ### LINHA DE COMANDO
