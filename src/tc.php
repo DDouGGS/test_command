@@ -29,19 +29,19 @@ abstract class TC implements TestsInterface, BreakpointsInterface
         $this->setBreakpoints(new Breakpoints());
     }
 
-    public static function break($output = array(), $condition = true)
+    public static function halt($output = array(), $condition = true)
     {
-        self::$breakpoints::break($output, $condition);
+        static::$breakpoints->halt($output, $condition);
     }
 
     public static function begin($output = array(), $condition = true)
     {
-        self::$breakpoints::begin($output, $condition);
+        static::$breakpoints->begin($output, $condition);
     }
 
     public static function rollback($output = array(), $condition = true)
     {
-        self::$breakpoints::rollback($output, $condition);
+        static::$breakpoints->rollback($output, $condition);
     }
 
     /**
@@ -54,7 +54,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function testing($configs = null, $test = null)
     {
-        self::$tests::tenting($configs, $test);
+        static::$tests->tenting($configs, $test);
     }
 
     /**
@@ -68,17 +68,17 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      * 
      * Tipos de Dados ($type):
      *      string:     Para texto.
-     *      int:        Nï¿½meros inteiros (ex: 10, -5).
-     *      float:      Nï¿½meros de ponto flutuante (ex: 3.14, 0.5).
-     *      bool:       Valores lï¿½gicos (true ou false).
-     *      array:      Coleï¿½ï¿½o de valores. 
-     *      object:     Instï¿½ncias de classes.
+     *      int:        Nmeros inteiros (ex: 10, -5).
+     *      float:      Nmeros de ponto flutuante (ex: 3.14, 0.5).
+     *      bool:       Valores lgicos (true ou false).
+     *      array:      Coleo de valores. 
+     *      object:     Instncias de classes.
      *      null:       Um valor especial que representa "nenhum valor".
      *      resource:   Um ponteiro para um recurso externo (como arquivos ou banco de dados).
      */
     public static function assertSame($type, $callback, $condition = true)
     {
-        self::$tests::assertSame($type, $callback, $condition);
+        static::$tests->assertSame($type, $callback, $condition);
     }
 
     /**
@@ -93,7 +93,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertRegExp($regex, $callback, $condition = true)
     {
-        self::$tests::assertRegExp($regex, $callback, $condition);
+        static::$tests->assertRegExp($regex, $callback, $condition);
     }
 
     /**
@@ -106,7 +106,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertEmpty($callback, $condition = true)
     {
-        self::$tests::assertEmpty($callback, $condition);
+        static::$tests->assertEmpty($callback, $condition);
     }
 
     /**
@@ -120,7 +120,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertEquals($equal, $callback, $condition = true)
     {
-        self::$tests::assertEquals($equal, $callback, $condition);
+        static::$tests->assertEquals($equal, $callback, $condition);
     }
 
     /**
@@ -134,7 +134,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertDiff($diff, $callback, $condition = true)
     {
-        self::$tests::assertDiff($diff, $callback, $condition);
+        static::$tests->assertDiff($diff, $callback, $condition);
     }
 
     /**
@@ -147,7 +147,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertFalse($callback, $condition = true)
     {
-        self::$tests::assertFalse($callback, $condition);
+        static::$tests->assertFalse($callback, $condition);
     }
 
     /**
@@ -160,7 +160,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertFileExists($callback, $condition = true)
     {
-        self::$tests::assertFileExists($callback, $condition);
+        static::$tests->assertFileExists($callback, $condition);
     }
 
     /**
@@ -174,7 +174,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertGreaterThan($term, $callback, $condition = true)
     {
-        self::$tests::assertGreaterThan($term, $callback, $condition);
+        static::$tests->assertGreaterThan($term, $callback, $condition);
     }
 
     /**
@@ -188,7 +188,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertGreaterThanOrEqual($term, $callback, $condition = true)
     {
-        self::$tests::assertGreaterThanOrEqual($term, $callback, $condition);
+        static::$tests->assertGreaterThanOrEqual($term, $callback, $condition);
     }
 
     /**
@@ -202,7 +202,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertInstanceOf($instancia, $callback, $condition = true)
     {
-        self::$tests::assertInstanceOf($instancia, $callback, $condition);
+        static::$tests->assertInstanceOf($instancia, $callback, $condition);
     }
 
     /**
@@ -216,7 +216,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertLessThan($term, $callback, $condition = true)
     {
-        self::$tests::assertLessThan($term, $callback, $condition);
+        static::$tests->assertLessThan($term, $callback, $condition);
     }
 
     /**
@@ -230,7 +230,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertLessThanOrEqual($term, $callback, $condition = true)
     {
-        self::$tests::assertLessThanOrEqual($term, $callback, $condition);
+        static::$tests->assertLessThanOrEqual($term, $callback, $condition);
     }
 
     /**
@@ -243,7 +243,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertNull($callback, $condition = true)
     {
-        self::$tests::assertNull($callback, $condition);
+        static::$tests->assertNull($callback, $condition);
     }
 
     /**
@@ -256,7 +256,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertTrue($callback, $condition = true)
     {
-        self::$tests::assertTrue($callback, $condition);
+        static::$tests->assertTrue($callback, $condition);
     }
 
     /**

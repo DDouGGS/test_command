@@ -6,12 +6,12 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'test_command\\TestCommand' => $baseDir . '/src/TestCommand.php',
-    'test_command\\prints' => $baseDir . '/src/prints.php',
-    'test_command\\purposes\\archives' => $baseDir . '/src/purposes/archives.php',
-    'test_command\\purposes\\archivesInterfaces' => $baseDir . '/src/purposes/archivesInterfaces.php',
-    'test_command\\purposes\\breakpoints' => $baseDir . '/src/purposes/breakpoints.php',
-    'test_command\\purposes\\breakpointsInterface' => $baseDir . '/src/purposes/breakpointsInterface.php',
-    'test_command\\purposes\\tests' => $baseDir . '/src/purposes/tests.php',
-    'test_command\\purposes\\testsInterface' => $baseDir . '/src/purposes/testsInterface.php',
+    'test_command\\Prints' => $baseDir . '/src/prints.php',
+    'test_command\\TC' => $baseDir . '/src/tc.php',
+    'test_command\\purposes\\Archives' => $baseDir . '/src/purposes/archives.php',
+    'test_command\\purposes\\ArchivesInterfaces' => $baseDir . '/src/purposes/archives_interfaces.php',
+    'test_command\\purposes\\Breakpoints' => $baseDir . '/src/purposes/breakpoints.php',
+    'test_command\\purposes\\BreakpointsInterface' => $baseDir . '/src/purposes/breakpoints_interface.php',
+    'test_command\\purposes\\Tests' => $baseDir . '/src/purposes/tests.php',
+    'test_command\\purposes\\TestsInterface' => $baseDir . '/src/purposes/tests_interface.php',
 );

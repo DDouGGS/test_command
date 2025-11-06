@@ -21,14 +21,14 @@ class ComposerStaticInit851d9bd5fb3099caffb2861c2c1c62cb
     );
 
     public static $classMap = array (
-        'test_command\\TestCommand' => __DIR__ . '/../..' . '/src/TestCommand.php',
-        'test_command\\prints' => __DIR__ . '/../..' . '/src/prints.php',
-        'test_command\\purposes\\archives' => __DIR__ . '/../..' . '/src/purposes/archives.php',
-        'test_command\\purposes\\archivesInterfaces' => __DIR__ . '/../..' . '/src/purposes/archivesInterfaces.php',
-        'test_command\\purposes\\breakpoints' => __DIR__ . '/../..' . '/src/purposes/breakpoints.php',
-        'test_command\\purposes\\breakpointsInterface' => __DIR__ . '/../..' . '/src/purposes/breakpointsInterface.php',
-        'test_command\\purposes\\tests' => __DIR__ . '/../..' . '/src/purposes/tests.php',
-        'test_command\\purposes\\testsInterface' => __DIR__ . '/../..' . '/src/purposes/testsInterface.php',
+        'test_command\\Prints' => __DIR__ . '/../..' . '/src/prints.php',
+        'test_command\\TC' => __DIR__ . '/../..' . '/src/tc.php',
+        'test_command\\purposes\\Archives' => __DIR__ . '/../..' . '/src/purposes/archives.php',
+        'test_command\\purposes\\ArchivesInterfaces' => __DIR__ . '/../..' . '/src/purposes/archives_interfaces.php',
+        'test_command\\purposes\\Breakpoints' => __DIR__ . '/../..' . '/src/purposes/breakpoints.php',
+        'test_command\\purposes\\BreakpointsInterface' => __DIR__ . '/../..' . '/src/purposes/breakpoints_interface.php',
+        'test_command\\purposes\\Tests' => __DIR__ . '/../..' . '/src/purposes/tests.php',
+        'test_command\\purposes\\TestsInterface' => __DIR__ . '/../..' . '/src/purposes/tests_interface.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -6,11 +6,12 @@
 */
 namespace test_command;
 
-require(__DIR__ .'/TestCommand.php');
+require(__DIR__ .'/tc.php');
 
 // configs
 try{
     $arc = realpath(__DIR__ . '/../../../../') . '/test_commands.json';
+    
     if(!file_exists($arc)){
         throw new \Exception('Não encontrado o arquivo de configurações.');
     }

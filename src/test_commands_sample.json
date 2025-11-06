@@ -1,8 +1,8 @@
 {
     "requires": [
-        "src/jobs/scripts/init.inc.php"
+        "src/admin/xavier.corp.folha.com.br/scripts/init.inc.php"
     ],
     "testNamespace": "tests\\",
-    "baseFolder": "/home/douglas/HTML/command_line_testing/",
-    "testFolder": "/home/douglas/HTML/command_line_testing/tests/"
+    "baseFolder": "/var/www/html/",
+    "testFolder": "/var/www/html/tests/"
 }
