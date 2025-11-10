@@ -14,7 +14,8 @@ class Prints
     protected static $header  = array();
     protected static $content = array();
     protected static $connection = null;
-    protected static $follow = null;
+    protected static $follow = true;
+    protected static $asserts  = array();
 
     /**
      * Method __construct
@@ -51,6 +52,30 @@ class Prints
             }
 
             echo(date('Y-m-d H:i:s', strtotime('now')). " <<<<< LABEL: " . self::getLabel() . ':' . self::$index ."\n");
+        }
+    }
+
+    /**
+     * Method block
+     *
+     * @param mixed $sd [explicite description]
+     * @param array $backtrace [explicite description]
+     *
+     * @return String
+     */
+    public static function tests()
+    {
+        if (!empty(self::$asserts)) {
+            echo("\n".date('Y-m-d H:i:s', strtotime('now')). " <<<<< TESTS - usage memory (Bytes): ". memory_get_peak_usage() ."\n");
+            // print asserts
+            foreach(self::$asserts as $item){
+                foreach($item as $key => $value){
+                    echo(date('Y-m-d H:i:s', strtotime('now'))." <<<<< <<<<< {$key}: {$value}\n");
+                }
+                echo(date('Y-m-d H:i:s', strtotime('now'))."\n");
+            }
+            // end
+            echo("\n".date('Y-m-d H:i:s', strtotime('now')). " <<<<< TESTS - END\n");
         }
     }
         
@@ -169,6 +194,8 @@ class Prints
     {
         $count = 0;
         $trace = '';
+        $class = null;
+        $type  = null;
         $debugBacktrace = debug_backtrace();
 
         if (self::getSimple()) {
@@ -177,8 +204,10 @@ class Prints
                     self::setReference(' ['  . $item['file'] . ' | ' . $item['line'] . ']');
                     self::setLabel(self::getReference());
                 }
-                if ($item['function'] !== 'backtrace') {
-                    $trace .= " <<<<< " . ' ['  . $item['class'] . $item['type'] . $item['function'] . "];\n";
+                if ($item['function'] !== 'backtratce') {
+                    $class = isset($item['class'])? $item['class']: null;
+                    $type  = isset($item['type'])? $item['type']: null;
+                    $trace .= " <<<<< " . ' ['  . $class . $type . $item['function'] . "];\n";
                 }
                 ++$count;
             }
@@ -191,11 +220,30 @@ class Prints
                     self::setLabel(self::getReference());
                 }
             if ($item['function'] !== 'backtrace') {
-                $trace .= " <<<<< " . ' ['  . $item['file'] . ' | ' . $item['line'] . '] - [' . $item['class'] . $item['type'] . $item['function'] . "];\n";
+                $class = isset($item['class'])? $item['class']: null;
+                $type  = isset($item['type'])? $item['type']: null;
+                $trace .= " <<<<< " . ' ['  . $item['file'] . ' | ' . $item['line'] . '] - [' . $class . $type . $item['function'] . "];\n";
             }
             ++$count;
         }
+
         return $trace;
+    }
+    
+    /**
+     * Method asserts
+     *
+     * @param string $msg [explicite description]
+     * @param string $typeReceived [explicite description]
+     * @param string $error [explicite description]
+     *
+     * @return void
+     */
+    public static function asserts($msg, $typeReceived, $error = null)
+    {
+        if((isset($msg) && !empty($msg) && isset($typeReceived))){
+            self::setAsserts(array('msg' => $msg, 'type received' => $typeReceived, 'error' => $error));
+        }
     }
 
     /**
@@ -364,5 +412,23 @@ class Prints
     public static function setFollow($follow)
     {
         if(!empty($follow)){ self::$follow = $follow;}
+    }
+
+    /**
+     * Get the value of asserts
+     */ 
+    public static function getAsserts()
+    {
+        return self::$asserts;
+    }
+
+    /**
+     * Set the value of asserts
+     *
+     * @return  void
+     */ 
+    public static function setAsserts($asserts)
+    {
+        if(isset($asserts) && !empty($asserts)) { self::$asserts[] = $asserts;}
     }
 }

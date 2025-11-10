@@ -7,7 +7,7 @@ use test_command\purposes\BreakpointsInterface;
 
 class Breakpoints extends Prints implements BreakpointsInterface
 {
-    public static function half($output = array(), $condition = true)
+    public function halt($output = array(), $condition = true)
     {
         // condition
         if (is_bool($condition) && $condition === true && !empty($output)) {
@@ -19,7 +19,7 @@ class Breakpoints extends Prints implements BreakpointsInterface
         }
     }
 
-    public static function begin($output = array(), $condition = true)
+    public function begin($output = array(), $condition = true)
     {
         // condition
         if (is_bool($condition) && $condition === true && !empty($output)) {
@@ -32,7 +32,7 @@ class Breakpoints extends Prints implements BreakpointsInterface
         }
     }
 
-    public static function rollback($output = array(), $condition = true)
+    public function rollback($output = array(), $condition = true)
     {
         // condition
         if (is_bool($condition) && $condition === true && !empty($output)) {

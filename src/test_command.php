@@ -21,14 +21,8 @@ try{
         require_once($cfg['configs']['baseFolder'] . $item);
     }
     // testing
-    require(__DIR__ .'/tc.php');
-    TC::testing(
-        array(
-            // 'configs' => require(realpath(__DIR__ . '/../../../../') . '/test_commands.php')
-            'configs' => json_decode(file_get_contents($arc), true)
-        ), 
-        $argv[1]
-    );
+    require(__DIR__ .'/TC.php');
+    TC::testing($cfg, $argv[1]);
 }catch(\Exception $e){
     echo($e->getMessage());
 }

@@ -10,7 +10,10 @@ class Tests extends Prints implements TestsInterface
     protected static $index   = 1;
     protected static $configs = array();
     protected static $test = '';
-    protected static $assets  = array();
+
+    // mensagens
+    const FAILED_TEST = 'NÃO passou no teste: %s:%.';
+    const PASSED_TEST = 'PASSOU no teste: %s:%s.';
 
     /**
      * Method exec
@@ -20,25 +23,27 @@ class Tests extends Prints implements TestsInterface
      *
      * @return void
      */
-    public static function testing($configs = null, $test = null)
+    public function testing($configs = null, $test = null)
     {
         // carregamentos
         self::setConfigs($configs);
         self::setTest($test);
-        // utilizar configuraÃ§Ãµes padrÃ£o ou o que foi passado
         $cfg = (array) self::getConfigs();
-        $obj = $cfg['configs']['testNamespace'] . str_replace('.php','',self::getTest());
-        // O arquivo de ter seu nome com final '_test' sempre
-        require_once($cfg['configs']['testFolder'] . self::getTest());
         // test
+        // carrega arquivo de test
+        // utilizar configurações de namespace
+        // O arquivo de ter seu nome com final '_test' sempre
+        $obj = $cfg['configs']['testNamespace'] . str_replace('.php','',self::getTest());
+        // carrega o arquivo da classe na memória
+        require_once($cfg['configs']['testFolder'] . self::getTest());
         // A classe de test deve ter o mesmo nome do arquivo
         $obj = new $obj();
-        // Toda funÃ§Ã£o de teste deve iniciar com a seguinte particula: 'test_'
+        // Toda função de teste deve iniciar com a seguinte particula: 'test_'
         foreach(get_class_methods($obj) as $item){
-            if(strpos($item, 'test_') !== false){
-                $obj->$item();
-            } 
+            if(strpos($item, 'test_') !== false){ $obj->$item();} 
         }
+        // result
+        self::tests();
         return;
     }
 
@@ -61,25 +66,23 @@ class Tests extends Prints implements TestsInterface
      *      null:       Um valor especial que representa "nenhum valor".
      *      resource:   Um ponteiro para um recurso externo (como arquivos ou banco de dados).
      */
-    public static function assertSame($type, $callback, $condition = true)
+    public function assertSame($type, $callback, $title = 'teste')
     {
-        // condition
-        if (is_bool($condition) && $condition === true) {
-            try{
-                // asset
-                $sd  = (gettype($callback) === $type);
-                $sds = $sd? 'true': 'false';
-            }catch(\Exception $e){
-                $sds = 'null';
-            }
+        $received = $type;
+        $error    = null;
+        $msg      = sprintf(self::FAILED_TEST, $title, 'assertSame');
+        try{
+            // asset
+            $received = $callback();
+            if((gettype($received) === $type)){
+                $msg = sprintf(self::PASSED_TEST, $title, 'assertSame');
+            };
             // assets;
-            $index = self::$index . ":sameShell:" . self::getLabel();
-            self::$assets[$index] = $sds;
-            // print
-            self::block(self::$assets, self::backtrace());
-            // footer
-            self::$index++;
-            if(self::getFollow()){self::follow();}
+            self::asserts($msg, gettype($received), $error);
+            return;
+        }catch(\Exception $e){
+            self::asserts($msg, gettype($received), $e->getMessage());
+            return;
         }
     }
 
@@ -93,22 +96,24 @@ class Tests extends Prints implements TestsInterface
      * @return void
      * 
      */
-    public static function assertRegExp($regex, $callback, $condition = true)
+    public function assertRegExp($regex, $callback, $title = 'teste')
     {
-        // condition
-        if (is_bool($condition) && $condition === true) {
+        $received = false;
+        $error    = null;
+        $msg      = sprintf(self::FAILED_TEST, $title, 'assertRegExp');
+        try{
             // asset
-            preg_match_all($regex, $callback, $matchs);
-            $sd  = (!empty($matchs));
-            $sds = $sd? 'true': 'false';
+            $received = $callback();
+            preg_match_all($regex, $received, $matchs);
+            if(!empty($matchs)){
+                $msg = sprintf(self::PASSED_TEST, $title, 'assertRegExp');
+            };
             // assets;
-            $index = self::$index . ":regExpShell:" . self::getLabel();
-            self::$assets[$index] = $sds;
-            // print
-            self::block(self::$assets, self::backtrace());
-            // footer
-            self::$index++;
-            if(self::getFollow()){self::follow();}
+            self::asserts($msg, gettype($received), $error);
+            return;
+        }catch(\Exception $e){
+            self::asserts($msg, gettype($received), $e->getMessage());
+            return;
         }
     }
 
@@ -120,21 +125,23 @@ class Tests extends Prints implements TestsInterface
      *
      * @return void
      */
-    public static function assertEmpty($callback, $condition = true)
+    public function assertEmpty($callback, $title = 'teste')
     {
-        // condition
-        if (is_bool($condition) && $condition === true) {
+        $received = false;
+        $error    = null;
+        $msg      = sprintf(self::FAILED_TEST, $title, 'assertEmpty');
+        try{
             // asset
-            $sd  = empty($callback);
-            $sds = $sd? 'true': 'false';
+            $received = $callback();
+            if(empty($received)){
+                $msg = sprintf(self::PASSED_TEST, $title, 'assertEmpty');
+            };
             // assets;
-            $index = self::$index . ":emptyShell:" . self::getLabel();
-            self::$assets[$index] = $sds;
-            // print
-            self::block(self::$assets, self::backtrace());
-            // footer
-            self::$index++;
-            if(self::getFollow()){self::follow();}
+            self::asserts($msg, gettype($received), $error);
+            return;
+        }catch(\Exception $e){
+            self::asserts($msg, gettype($received), $e->getMessage());
+            return;
         }
     }
 
@@ -147,21 +154,23 @@ class Tests extends Prints implements TestsInterface
      *
      * @return void
      */
-    public static function assertEquals($equal, $callback, $condition = true)
+    public function assertEquals($equal, $callback, $title = 'teste')
     {
-        // condition
-        if (is_bool($condition) && $condition === true) {
+        $received = false;
+        $error    = null;
+        $msg      = sprintf(self::FAILED_TEST, $title, 'assertEquals');
+        try{
             // asset
-            $sd  = ($callback == $equal);
-            $sds = $sd? 'true': 'false';
+            $received = $callback();
+            if($received == $equal){
+                $msg = sprintf(self::PASSED_TEST, $title, 'assertEquals');
+            };
             // assets;
-            $index = self::$index . ":equalsShell:" . self::getLabel();
-            self::$assets[$index] = $sds;
-            // print
-            self::block(self::$assets, self::backtrace());
-            // footer
-            self::$index++;
-            if(self::getFollow()){self::follow();}
+            self::asserts($msg, gettype($received), $error);
+            return;
+        }catch(\Exception $e){
+            self::asserts($msg, gettype($received), $e->getMessage());
+            return;
         }
     }
 
@@ -174,21 +183,23 @@ class Tests extends Prints implements TestsInterface
      *
      * @return void
      */
-    public static function assertDiff($diff, $callback, $condition = true)
+    public function assertDiff($diff, $callback, $title = 'teste')
     {
-        // condition
-        if (is_bool($condition) && $condition === true) {
+        $received = false;
+        $error    = null;
+        $msg      = sprintf(self::FAILED_TEST, $title, 'assertDiff');
+        try{
             // asset
-            $sd  = ($callback !== $diff);
-            $sds = $sd? 'true': 'false';
+            $received = $callback();
+            if($received !== $diff){
+                $msg = sprintf(self::PASSED_TEST, $title, 'assertDiff');
+            }
             // assets;
-            $index = self::$index . ":diffsShell:" . self::getLabel();
-            self::$assets[$index] = $sds;
-            // print
-            self::block(self::$assets, self::backtrace());
-            // footer
-            self::$index++;
-            if(self::getFollow()){self::follow();}
+            self::asserts($msg, gettype($received), $error);
+            return;
+        }catch(\Exception $e){
+            self::asserts($msg, gettype($received), $e->getMessage());
+            return;
         }
     }
 
@@ -200,47 +211,51 @@ class Tests extends Prints implements TestsInterface
      *
      * @return void
      */
-    public static function assertFalse($callback, $condition = true)
+    public function assertFalse($callback, $title = 'teste')
     {
-        // condition
-        if (is_bool($condition) && $condition === true) {
+        $received = true;
+        $error    = null;
+        $msg      = sprintf(self::FAILED_TEST, $title, 'assertFalse');
+        try{
             // asset
-            $sd  = ($callback === false);
-            $sds = $sd? 'true': 'false';
+            $received = $callback();
+            if($received === false){
+                $msg = sprintf(self::PASSED_TEST, $title, 'assertFalse');
+            }
             // assets;
-            $index = self::$index . ":falseShell:" . self::getLabel();
-            self::$assets[$index] = $sds;
-            // print
-            self::block(self::$assets, self::backtrace());
-            // footer
-            self::$index++;
-            if(self::getFollow()){self::follow();}
+            self::asserts($msg, gettype($received), $error);
+            return;
+        }catch(\Exception $e){
+            self::asserts($msg, gettype($received), $e->getMessage());
+            return;
         }
     }
 
     /**
      * Method assertFileExists
      *
-     * @param string $callback [explicite description]
+     * @param Closure $callback [explicite description]
      * @param $condition $condition [explicite description]
      *
      * @return void
      */
-    public static function assertFileExists($callback, $condition = true)
+    public function assertFileExists($callback, $title = 'teste')
     {
-        // condition
-        if (is_bool($condition) && $condition === true) {
+        $received = false;
+        $error    = null;
+        $msg      = sprintf(self::FAILED_TEST, $title, 'assertFileExists');
+        try{
             // asset
-            $sd  = file_exists($callback);
-            $sds = $sd? 'true': 'false';
+            $received = $callback();
+            if(file_exists($received)){
+                $msg = sprintf(self::PASSED_TEST, $title, 'assertFileExists');
+            }
             // assets;
-            $index = self::$index . ":fileExistsShell:" . self::getLabel();
-            self::$assets[$index] = $sds;
-            // print
-            self::block(self::$assets, self::backtrace());
-            // footer
-            self::$index++;
-            if(self::getFollow()){self::follow();}
+            self::asserts($msg, gettype($received), $error);
+            return;
+        }catch(\Exception $e){
+            self::asserts($msg, gettype($received), $e->getMessage());
+            return;
         }
     }
 
@@ -253,21 +268,23 @@ class Tests extends Prints implements TestsInterface
      *
      * @return void
      */
-    public static function assertGreaterThan($term, $callback, $condition = true)
+    public function assertGreaterThan($term, $callback, $title = 'teste')
     {
-        // condition
-        if (is_bool($condition) && $condition === true) {
+        $received = false;
+        $error    = null;
+        $msg      = sprintf(self::FAILED_TEST, $title, 'assertGreaterThan');
+        try{
             // asset
-            $sd  = ($callback > $term);
-            $sds = $sd? 'true': 'false';
+            $received = $callback();
+            if($received > $term){
+                $msg = sprintf(self::PASSED_TEST, $title, 'assertGreaterThan');
+            }
             // assets;
-            $index = self::$index . ":greaterThanShell:" . self::getLabel();
-            self::$assets[$index] = $sds;
-            // print
-            self::block(self::$assets, self::backtrace());
-            // footer
-            self::$index++;
-            if(self::getFollow()){self::follow();}
+            self::asserts($msg, gettype($received), $error);
+            return;
+        }catch(\Exception $e){
+            self::asserts($msg, gettype($received), $e->getMessage());
+            return;
         }
     }
 
@@ -280,21 +297,23 @@ class Tests extends Prints implements TestsInterface
      *
      * @return void
      */
-    public static function assertGreaterThanOrEqual($term, $callback, $condition = true)
+    public function assertGreaterThanOrEqual($term, $callback, $title = 'teste')
     {
-        // condition
-        if (is_bool($condition) && $condition === true) {
+        $received = false;
+        $error    = null;
+        $msg      = sprintf(self::FAILED_TEST, $title, 'assertGreaterThanOrEqual');
+        try{
             // asset
-            $sd  = ($callback >= $term);
-            $sds = $sd? 'true': 'false';
+            $received = $callback();
+            if($received >= $term){
+                $msg = sprintf(self::PASSED_TEST, $title, 'assertGreaterThanOrEqual');
+            }
             // assets;
-            $index = self::$index . ":greaterThanOrEqualShell:" . self::getLabel();
-            self::$assets[$index] = $sds;
-            // print
-            self::block(self::$assets, self::backtrace());
-            // footer
-            self::$index++;
-            if(self::getFollow()){self::follow();}
+            self::asserts($msg, gettype($received), $error);
+            return;
+        }catch(\Exception $e){
+            self::asserts($msg, gettype($received), $e->getMessage());
+            return;
         }
     }
 
@@ -307,21 +326,23 @@ class Tests extends Prints implements TestsInterface
      *
      * @return void
      */
-    public static function assertInstanceOf($instancia, $callback, $condition = true)
+    public function assertInstanceOf($instancia, $callback, $title = 'teste')
     {
-        // condition
-        if (is_bool($condition) && $condition === true) {
+        $received = false;
+        $error    = null;
+        $msg      = sprintf(self::FAILED_TEST, $title, 'assertInstanceOf');
+        try{
             // asset
-            $sd  = ($callback === true);
-            $sds = $sd? 'true': 'false';
+            $received = $callback();
+            if($received instanceof $instancia){
+                $msg = sprintf(self::PASSED_TEST, $title, 'assertInstanceOf');
+            }
             // assets;
-            $index = self::$index . ":instanceOfShell:" . self::getLabel();
-            self::$assets[$index] = $sds;
-            // print
-            self::block(self::$assets, self::backtrace());
-            // footer
-            self::$index++;
-            if(self::getFollow()){self::follow();}
+            self::asserts($msg, gettype($received), $error);
+            return;
+        }catch(\Exception $e){
+            self::asserts($msg, gettype($received), $e->getMessage());
+            return;
         }
     }
 
@@ -334,21 +355,23 @@ class Tests extends Prints implements TestsInterface
      *
      * @return void
      */
-    public static function assertLessThan($term, $callback, $condition = true)
+    public function assertLessThan($term, $callback, $title = 'teste')
     {
-        // condition
-        if (is_bool($condition) && $condition === true) {
+        $received = false;
+        $error    = null;
+        $msg      = sprintf(self::FAILED_TEST, $title, 'assertLessThan');
+        try{
             // asset
-            $sd  = ($callback < $term);
-            $sds = $sd? 'true': 'false';
+            $received = $callback();
+            if($received < $term){
+                $msg = sprintf(self::PASSED_TEST, $title, 'assertLessThan');
+            }
             // assets;
-            $index = self::$index . ":lessThanShell:" . self::getLabel();
-            self::$assets[$index] = $sds;
-            // print
-            self::block(self::$assets, self::backtrace());
-            // footer
-            self::$index++;
-            if(self::getFollow()){self::follow();}
+            self::asserts($msg, gettype($received), $error);
+            return;
+        }catch(\Exception $e){
+            self::asserts($msg, gettype($received), $e->getMessage());
+            return;
         }
     }
 
@@ -361,21 +384,23 @@ class Tests extends Prints implements TestsInterface
      *
      * @return void
      */
-    public static function assertLessThanOrEqual($term, $callback, $condition = true)
+    public function assertLessThanOrEqual($term, $callback, $title = 'teste')
     {
-        // condition
-        if (is_bool($condition) && $condition === true) {
+        $received = false;
+        $error    = null;
+        $msg      = sprintf(self::FAILED_TEST, $title, 'assertLessThanOrEqual');
+        try{
             // asset
-            $sd  = ($callback <= $term);
-            $sds = $sd? 'true': 'false';
+            $received = $callback();
+            if($received <= $term){
+                $msg = sprintf(self::PASSED_TEST, $title, 'assertLessThanOrEqual');
+            }
             // assets;
-            $index = self::$index . ":lessThanOrEqualShell:" . self::getLabel();
-            self::$assets[$index] = $sds;
-            // print
-            self::block(self::$assets, self::backtrace());
-            // footer
-            self::$index++;
-            if(self::getFollow()){self::follow();}
+            self::asserts($msg, gettype($received), $error);
+            return;
+        }catch(\Exception $e){
+            self::asserts($msg, gettype($received), $e->getMessage());
+            return;
         }
     }
 
@@ -387,21 +412,23 @@ class Tests extends Prints implements TestsInterface
      *
      * @return void
      */
-    public static function assertNull($callback, $condition = true)
+    public function assertNull($callback, $title = 'teste')
     {
-        // condition
-        if (is_bool($condition) && $condition === true) {
+        $received = false;
+        $error    = null;
+        $msg      = sprintf(self::FAILED_TEST, $title, 'assertNull');
+        try{
             // asset
-            $sd  = ($callback === null);
-            $sds = $sd? 'true': 'false';
+            $received = $callback();
+            if($received === null){
+                $msg = sprintf(self::PASSED_TEST, $title, 'assertNull');
+            }
             // assets;
-            $index = self::$index . ":nullShell:" . self::getLabel();
-            self::$assets[$index] = $sds;
-            // print
-            self::block(self::$assets, self::backtrace());
-            // footer
-            self::$index++;
-            if(self::getFollow()){self::follow();}
+            self::asserts($msg, gettype($received), $error);
+            return;
+        }catch(\Exception $e){
+            self::asserts($msg, gettype($received), $e->getMessage());
+            return;
         }
     }    
 
@@ -413,135 +440,25 @@ class Tests extends Prints implements TestsInterface
      *
      * @return void
      */
-    public static function assertTrue($callback, $condition = true)
+    public function assertTrue($callback, $title = 'teste')
     {
-        // condition
-        if (is_bool($condition) && $condition === true) {
+        $received = false;
+        $error    = null;
+        $msg      = sprintf(self::FAILED_TEST, $title, 'assertTrue');
+        try{
             // asset
-            $sd = ($callback === true);
-            $sds = $sd? 'true': 'false';
+            $received = $callback();
+            if($received === true){
+                $msg = sprintf(self::PASSED_TEST, $title, 'assertTrue');
+            }
             // assets;
-            $index = self::$index . ":trueShell:" . self::getLabel();
-            self::$assets[$index] = $sds;
-            // print
-            self::block(self::$assets, self::backtrace());
-            // footer
-            self::$index++;
-            if(self::getFollow()){self::follow();}
+            self::asserts($msg, gettype($received), $error);
+            return;
+        }catch(\Exception $e){
+            self::asserts($msg, gettype($received), $e->getMessage());
             return;
         }
-    }
-
-    /**
-     * Get the value of simple
-     */
-    public static function getSimple()
-    {
-        return self::$simple;
-    }
-
-    /**
-     * Set the value of simple
-     *
-     * @return  self
-     */
-    public static function setSimple($simple)
-    {
-        if (isset($simple) && !empty($simple)) {
-            self::$simple = $simple;
-        }
-    }
-
-    /**
-     * Get the value of property
-     */
-    public static function getPropertys()
-    {
-        return self::$propertys;
-    }
-
-    /**
-     * Set the value of property
-     *
-     * @return  self
-     */
-    public static function setPropertys($propertys)
-    {
-        if (isset($propertys) && !empty($propertys)) {
-            self::$propertys = $propertys;
-        }
-    }
-
-    /**
-     * Get the value of content
-     */ 
-    public static function getContent()
-    {
-        return self::$content;
-    }
-
-    /**
-     * Set the value of content
-     *
-     * @return  self
-     */ 
-    public static function setContent($content)
-    {
-        if (isset($content) && !empty($content)) self::$content[] = $content;
-    }
-
-    /**
-     * Get the value of header
-     */ 
-    public static function getHeader()
-    {
-        return self::$header;
-    }
-
-    /**
-     * Set the value of header
-     *
-     * @return  self
-     */ 
-    public static function setHeader($field, $value)
-    {
-        if(isset($value) && !empty($value)) self::$header[$field] = $value;
-    }
-
-    /**
-     * Get the value of label
-     */ 
-    public static function getLabel()
-    {
-        return self::$label;
-    }
-
-    /**
-     * Set the value of label
-     *
-     * @return  self
-     */ 
-    public static function setLabel($label)
-    {
-        if(isset($label) && !empty($label)){ self::$label = $label; }
-    }
-
-    /**
-     * Get the value of reference
-     */ 
-    public static function getReference()
-    {
-        return self::$reference;
-    }
-
-    /**
-     * Set the value of reference
-     *
-     * @return  self
-     */ 
-    public static function setReference($reference)
-    {
-        if(isset($reference) && !empty($reference)){ self::$reference = $reference;}
+        
     }
 
     /**

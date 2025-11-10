@@ -63,9 +63,9 @@ class Archives extends Prints implements ArchivesInterface
      *
      * @return void
      */
-    function create($name, $folder)
+    function create($name, $folder = null)
     {
-        if (!isset($name) && !isset($folder)) {
+        if ((!isset($name) || empty($name)) && (!isset($folder) || empty($folder))) {
             return null;
         }
 

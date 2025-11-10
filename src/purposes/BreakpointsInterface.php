@@ -4,9 +4,9 @@ namespace test_command\purposes;
 
 interface BreakpointsInterface
 {
-    public static function half($output = array(), $condition = true);
+    public function halt($output = array(), $condition = true);
 
-    public static function begin($output = array(), $condition = true);
+    public function begin($output = array(), $condition = true);
 
-    public static function rollback($output = array(), $condition = true);
+    public function rollback($output = array(), $condition = true);
 }

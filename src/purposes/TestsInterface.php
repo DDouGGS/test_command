@@ -12,14 +12,14 @@ interface TestsInterface
      *
      * @return void
      */
-    public static function testing($configs = null, $test = null);
+    public function testing($configs = null, $test = null);
 
     /**
      * Method assertSame
      *
      * @param string    $type [explicite description]
      * @param Closure   $callback [explicite description]
-     * @param bool      $condition [explicite description]
+     * @param string    $title [explicite description]
      *
      * @return void
      * 
@@ -33,144 +33,144 @@ interface TestsInterface
      *      null:       Um valor especial que representa "nenhum valor".
      *      resource:   Um ponteiro para um recurso externo (como arquivos ou banco de dados).
      */
-    public static function assertSame($type, $callback, $condition = true);
+    public function assertSame($type, $callback, $title = 'teste');
 
     /**
      * Method assertRegExp
      *
      * @param string    $regex [explicite description]
      * @param string    $callback [explicite description]
-     * @param bool      $condition [explicite description]
+     * @param string    $title [explicite description]
      *
      * @return void
      * 
      */
-    public static function assertRegExp($regex, $callback, $condition = true);
+    public function assertRegExp($regex, $callback, $title = 'teste');
 
     /**
      * Method assertEmpty
      *
      * @param Closure $callback [explicite description]
-     * @param $condition $condition [explicite description]
+     * @param string    $title [explicite description]
      *
      * @return void
      */
-    public static function assertEmpty($callback, $condition = true);
+    public function assertEmpty($callback, $title = 'teste');
 
     /**
      * Method assertEquals
      *
      * @param $equal $equal [explicite description]
      * @param Closure $callback [explicite description]
-     * @param $condition $condition [explicite description]
+     * @param string    $title [explicite description]
      *
      * @return void
      */
-    public static function assertEquals($equal, $callback, $condition = true);
+    public function assertEquals($equal, $callback, $title = 'teste');
 
     /**
      * Method assertDiffs
      *
      * @param $diff $diff [explicite description]
      * @param Closure $callback [explicite description]
-     * @param $condition $condition [explicite description]
+     * @param string    $title [explicite description]
      *
      * @return void
      */
-    public static function assertDiff($diff, $callback, $condition = true);
+    public function assertDiff($diff, $callback, $title = 'teste');
 
     /**
      * Method assertFalse
      *
      * @param Closure $callback [explicite description]
-     * @param $condition $condition [explicite description]
+     * @param string    $title [explicite description]
      *
      * @return void
      */
-    public static function assertFalse($callback, $condition = true);
+    public function assertFalse($callback, $title = 'teste');
 
     /**
      * Method assertFileExists
      *
      * @param string $callback [explicite description]
-     * @param $condition $condition [explicite description]
+     * @param string    $title [explicite description]
      *
      * @return void
      */
-    public static function assertFileExists($callback, $condition = true);
+    public function assertFileExists($callback, $title = 'teste');
 
     /**
      * Method assertGreaterThan
      *
      * @param int $term [explicite description]
      * @param Closure $callback [explicite description]
-     * @param $condition $condition [explicite description]
+     * @param string    $title [explicite description]
      *
      * @return void
      */
-    public static function assertGreaterThan($term, $callback, $condition = true);
+    public function assertGreaterThan($term, $callback, $title = 'teste');
 
     /**
      * Method assertGreaterThanOrEqual
      *
      * @param int $term [explicite description]
      * @param Closure $callback [explicite description]
-     * @param $condition $condition [explicite description]
+     * @param string    $title [explicite description]
      *
      * @return void
      */
-    public static function assertGreaterThanOrEqual($term, $callback, $condition = true);
+    public function assertGreaterThanOrEqual($term, $callback, $title = 'teste');
 
     /**
      * Method assertInstanceOf
      *
      * @param $instancia $instancia [explicite description]
      * @param Closure $callback [explicite description]
-     * @param $condition $condition [explicite description]
+     * @param string    $title [explicite description]
      *
      * @return void
      */
-    public static function assertInstanceOf($instancia, $callback, $condition = true);
+    public function assertInstanceOf($instancia, $callback, $title = 'teste');
 
     /**
      * Method assertLessThan
      *
      * @param int $term [explicite description]
      * @param Closure $callback [explicite description]
-     * @param $condition $condition [explicite description]
+     * @param string    $title [explicite description]
      *
      * @return void
      */
-    public static function assertLessThan($term, $callback, $condition = true);
+    public function assertLessThan($term, $callback, $title = 'teste');
 
     /**
      * Method assertLessThanOrEqual
      *
      * @param int $term [explicite description]
      * @param Closure $callback [explicite description]
-     * @param $condition $condition [explicite description]
+     * @param string    $title [explicite description]
      *
      * @return void
      */
-    public static function assertLessThanOrEqual($term, $callback, $condition = true);
+    public function assertLessThanOrEqual($term, $callback, $title = 'teste');
 
     /**
      * Method assertNull
      *
      * @param Closure $callback [explicite description]
-     * @param $condition $condition [explicite description]
+     * @param string    $title [explicite description]
      *
      * @return void
      */
-    public static function assertNull($callback, $condition = true);
+    public function assertNull($callback, $title = 'teste');
 
     /**
      * Method assertTrue
      *
      * @param Closure   $callback [explicite description]
-     * @param bool      $condition [explicite description]
+     * @param string    $title [explicite description]
      *
      * @return void
      */
-    public static function assertTrue($callback, $condition = true);
+    public function assertTrue($callback, $title = 'teste');
 }

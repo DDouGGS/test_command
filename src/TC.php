@@ -11,37 +11,45 @@ use test_command\purposes\ArchivesInterface;
 use test_command\purposes\Breakpoints;
 use test_command\purposes\BreakpointsInterface;
 
-abstract class TC implements TestsInterface, BreakpointsInterface
+abstract class TC
 {
     protected static $tests = null;
     protected static $archives = null;
     protected static $breakpoints = null;
 
     /**
-     * Method __construct
+     * Method existsTests
      *
      * @return void
      */
-    public function __construct()
+    private static function existsBreakpoints()
     {
-        $this->setTests(new Tests());
-        $this->setArchives(new Archives());
-        $this->setBreakpoints(new Breakpoints());
+        return static::$breakpoints instanceof Breakpoints? true: false;
     }
 
     public static function halt($output = array(), $condition = true)
     {
-        static::$breakpoints->halt($output, $condition);
+        self::getBreakpoints()->halt($output, $condition);
     }
 
     public static function begin($output = array(), $condition = true)
     {
-        static::$breakpoints->begin($output, $condition);
+        self::getBreakpoints()->begin($output, $condition);
     }
 
     public static function rollback($output = array(), $condition = true)
     {
-        static::$breakpoints->rollback($output, $condition);
+        self::getBreakpoints()->rollback($output, $condition);
+    }
+    
+    /**
+     * Method existsTests
+     *
+     * @return void
+     */
+    private static function existsTests()
+    {
+        return static::$tests instanceof Tests? true: false;
     }
 
     /**
@@ -54,7 +62,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function testing($configs = null, $test = null)
     {
-        static::$tests->tenting($configs, $test);
+        self::getTests()->testing($configs, $test);
     }
 
     /**
@@ -78,7 +86,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertSame($type, $callback, $condition = true)
     {
-        static::$tests->assertSame($type, $callback, $condition);
+        self::getTests()->assertSame($type, $callback, $condition);
     }
 
     /**
@@ -93,7 +101,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertRegExp($regex, $callback, $condition = true)
     {
-        static::$tests->assertRegExp($regex, $callback, $condition);
+        self::getTests()->assertRegExp($regex, $callback, $condition);
     }
 
     /**
@@ -106,7 +114,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertEmpty($callback, $condition = true)
     {
-        static::$tests->assertEmpty($callback, $condition);
+        self::getTests()->assertEmpty($callback, $condition);
     }
 
     /**
@@ -120,7 +128,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertEquals($equal, $callback, $condition = true)
     {
-        static::$tests->assertEquals($equal, $callback, $condition);
+        self::getTests()->assertEquals($equal, $callback, $condition);
     }
 
     /**
@@ -134,7 +142,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertDiff($diff, $callback, $condition = true)
     {
-        static::$tests->assertDiff($diff, $callback, $condition);
+        self::getTests()->assertDiff($diff, $callback, $condition);
     }
 
     /**
@@ -147,7 +155,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertFalse($callback, $condition = true)
     {
-        static::$tests->assertFalse($callback, $condition);
+        self::getTests()->assertFalse($callback, $condition);
     }
 
     /**
@@ -160,7 +168,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertFileExists($callback, $condition = true)
     {
-        static::$tests->assertFileExists($callback, $condition);
+        self::getTests()->assertFileExists($callback, $condition);
     }
 
     /**
@@ -174,7 +182,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertGreaterThan($term, $callback, $condition = true)
     {
-        static::$tests->assertGreaterThan($term, $callback, $condition);
+        self::getTests()->assertGreaterThan($term, $callback, $condition);
     }
 
     /**
@@ -188,7 +196,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertGreaterThanOrEqual($term, $callback, $condition = true)
     {
-        static::$tests->assertGreaterThanOrEqual($term, $callback, $condition);
+        self::getTests()->assertGreaterThanOrEqual($term, $callback, $condition);
     }
 
     /**
@@ -202,7 +210,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertInstanceOf($instancia, $callback, $condition = true)
     {
-        static::$tests->assertInstanceOf($instancia, $callback, $condition);
+        self::getTests()->assertInstanceOf($instancia, $callback, $condition);
     }
 
     /**
@@ -216,7 +224,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertLessThan($term, $callback, $condition = true)
     {
-        static::$tests->assertLessThan($term, $callback, $condition);
+        self::getTests()->assertLessThan($term, $callback, $condition);
     }
 
     /**
@@ -230,7 +238,7 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertLessThanOrEqual($term, $callback, $condition = true)
     {
-        static::$tests->assertLessThanOrEqual($term, $callback, $condition);
+        self::getTests()->assertLessThanOrEqual($term, $callback, $condition);
     }
 
     /**
@@ -243,20 +251,41 @@ abstract class TC implements TestsInterface, BreakpointsInterface
      */
     public static function assertNull($callback, $condition = true)
     {
-        static::$tests->assertNull($callback, $condition);
+        self::getTests()->assertNull($callback, $condition);
     }
 
     /**
      * Method assertTrue
      *
-     * @param mixed   $callback [explicite description]
+     * @param Closure   $callback [explicite description]
      * @param bool      $condition [explicite description]
      *
      * @return void
      */
     public static function assertTrue($callback, $condition = true)
     {
-        static::$tests->assertTrue($callback, $condition);
+        self::getTests()->assertTrue($callback, $condition);
+    }
+
+    /**
+     * Method existsTests
+     *
+     * @return void
+     */
+    private static function existsArchives()
+    {
+        return static::$archives instanceof Archives? true: false;
+    }
+    
+    /**
+     * Method getTests
+     *
+     * @return Tests
+     */
+    private static function getTests()
+    {
+        if(!self::existsTests()){self::setTests(new Tests());}
+        return self::$tests;
     }
 
     /**
@@ -268,6 +297,17 @@ abstract class TC implements TestsInterface, BreakpointsInterface
     {
         if(isset($tests) && !empty($tests)) self::$tests = $tests;
     }
+    
+    /**
+     * Method getArchives
+     *
+     * @return Archives
+     */
+    private static function getArchives()
+    {
+        if(!self::existsArchives()){self::setArchives(new Archives());}
+        return self::$archives;
+    }
 
     /**
      * Set the value of archives
@@ -277,6 +317,17 @@ abstract class TC implements TestsInterface, BreakpointsInterface
     private static function setArchives($archives)
     {
         if(isset($archives) && !empty($archives)) self::$archives = $archives;
+    }
+
+    /**
+     * Method getBreakpoints
+     *
+     * @return Breakpoints
+     */
+    private static function getBreakpoints()
+    {
+        if(!self::existsBreakpoints()){self::setBreakpoints(new Breakpoints());}
+        return self::$breakpoints;
     }
 
     /**
