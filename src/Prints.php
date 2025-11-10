@@ -2,8 +2,6 @@
 
 namespace test_command;
 
-use test_command\purposes\archives;
-
 class Prints
 {
     protected static $protocol;

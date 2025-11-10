@@ -3,9 +3,9 @@
 namespace test_command\purposes;
 
 use test_command\Prints;
-use test_command\purposes\ArchivesInterfaces;
+use test_command\purposes\ArchivesInterface;
 
-class Archives extends Prints implements ArchivesInterfaces
+class Archives extends Prints implements ArchivesInterface
 {
     const carrierReturn = "\n";
 

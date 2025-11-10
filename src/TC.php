@@ -7,7 +7,7 @@ namespace test_command;
 use test_command\purposes\Tests;
 use test_command\purposes\TestsInterface;
 use test_command\purposes\Archives;
-use test_command\purposes\ArchivesInterfaces;
+use test_command\purposes\ArchivesInterface;
 use test_command\purposes\Breakpoints;
 use test_command\purposes\BreakpointsInterface;
 

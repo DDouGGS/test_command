@@ -2,7 +2,7 @@
 
 namespace test_command\purposes;
 
-interface ArchivesInterfaces
+interface ArchivesInterface
 {
     /**
      * Method log

@@ -28,10 +28,6 @@ class Tests extends Prints implements TestsInterface
         // utilizar configurações padrão ou o que foi passado
         $cfg = (array) self::getConfigs();
         $obj = $cfg['configs']['testNamespace'] . str_replace('.php','',self::getTest());
-        // requires
-        foreach($cfg['configs']['requires'] as $item){
-            require_once($cfg['configs']['baseFolder'] . $item);
-        }
         // O arquivo de ter seu nome com final '_test' sempre
         require_once($cfg['configs']['testFolder'] . self::getTest());
         // test

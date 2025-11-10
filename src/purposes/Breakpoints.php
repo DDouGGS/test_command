@@ -7,7 +7,7 @@ use test_command\purposes\BreakpointsInterface;
 
 class Breakpoints extends Prints implements BreakpointsInterface
 {
-    public static function break($output = array(), $condition = true)
+    public static function half($output = array(), $condition = true)
     {
         // condition
         if (is_bool($condition) && $condition === true && !empty($output)) {
