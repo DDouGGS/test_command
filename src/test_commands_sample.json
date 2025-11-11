@@ -2,7 +2,7 @@
     "requires": [
         "src/admin/xavier.corp.folha.com.br/scripts/init.inc.php"
     ],
-    "testNamespace": "tests\\",
+    "testNamespace": "tsts\\",
     "baseFolder": "/var/www/html/",
-    "testFolder": "/var/www/html/tests/"
+    "testFolder": "/var/www/html/tsts/"
 }
