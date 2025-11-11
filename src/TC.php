@@ -266,6 +266,19 @@ abstract class TC
     {
         self::getTests()->assertTrue($callback, $condition);
     }
+    
+    /**
+     * Method assertTrue2
+     *
+     * @param Closure $callback [explicite description]
+     * @param string $title [explicite description]
+     *
+     * @return void
+     */
+    public static function assertTrue2( $callback, $title = 'teste')
+    {
+        self::getTests()->assertTrue2($callback, $title);
+    }
 
     /**
      * Method existsTests

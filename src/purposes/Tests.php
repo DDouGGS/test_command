@@ -12,8 +12,8 @@ class Tests extends Prints implements TestsInterface
     protected static $test = '';
 
     // mensagens
-    const FAILED_TEST = 'NÃO passou no teste: %s:%.';
-    const PASSED_TEST = 'PASSOU no teste: %s:%s.';
+    const FAILED_TEST = "\033[35m%s:%s - NÃO passou no teste.\033[0m";
+    const PASSED_TEST = "\033[34m%s:%s - PASSOU no teste.\033[0m";
 
     /**
      * Method exec
@@ -42,8 +42,6 @@ class Tests extends Prints implements TestsInterface
         foreach(get_class_methods($obj) as $item){
             if(strpos($item, 'test_') !== false){ $obj->$item();} 
         }
-        // result
-        self::tests();
         return;
     }
 
@@ -213,20 +211,21 @@ class Tests extends Prints implements TestsInterface
      */
     public function assertFalse($callback, $title = 'teste')
     {
-        $received = true;
-        $error    = null;
-        $msg      = sprintf(self::FAILED_TEST, $title, 'assertFalse');
+        $received = null;
         try{
-            // asset
-            $received = $callback();
-            if($received === false){
-                $msg = sprintf(self::PASSED_TEST, $title, 'assertFalse');
+            if(!isset($callback)){
+                throw new \Exception("Não identificada a variável 'callback'");
             }
-            // assets;
-            self::asserts($msg, gettype($received), $error);
+            $received = $callback();
+            $this->compare(
+                $received, 
+                $received === false, 
+                $title, 
+                'assertFalse'
+            );
             return;
         }catch(\Exception $e){
-            self::asserts($msg, gettype($received), $e->getMessage());
+            self::asserts(sprintf(self::FAILED_TEST, $title, 'assertFalse'), $received, $e->getMessage());
             return;
         }
     }
@@ -430,7 +429,7 @@ class Tests extends Prints implements TestsInterface
             self::asserts($msg, gettype($received), $e->getMessage());
             return;
         }
-    }    
+    }
 
     /**
      * Method assertTrue
@@ -442,23 +441,44 @@ class Tests extends Prints implements TestsInterface
      */
     public function assertTrue($callback, $title = 'teste')
     {
-        $received = false;
-        $error    = null;
-        $msg      = sprintf(self::FAILED_TEST, $title, 'assertTrue');
+        $received = null;
         try{
-            // asset
-            $received = $callback();
-            if($received === true){
-                $msg = sprintf(self::PASSED_TEST, $title, 'assertTrue');
+            if(!isset($callback)){
+                throw new \Exception("Não identificada a variável 'callback'");
             }
-            // assets;
-            self::asserts($msg, gettype($received), $error);
+            $received = $callback();
+            $this->compare(
+                $received, 
+                $received === true, 
+                $title, 
+                'assertTrue2'
+            );
             return;
         }catch(\Exception $e){
-            self::asserts($msg, gettype($received), $e->getMessage());
+            self::asserts(sprintf(self::FAILED_TEST, $title, 'assertTrue2'), $received, $e->getMessage());
             return;
         }
-        
+    }
+    
+    /**
+     * Method compare
+     *
+     * @param mixed  $received [explicite description]
+     * @param bool   $compare [explicite description]
+     * @param string $title [explicite description]
+     * @param string $subtitle [explicite description]
+     * @param string $error [explicite desciption]
+     *
+     * @return void
+     */
+    private function compare($received, $compare, $title = 'teste', $subtitle = '')
+    {
+        $msg = sprintf(self::FAILED_TEST, $title, $subtitle);
+        // asset
+        if($compare){ $msg = sprintf(self::PASSED_TEST, $title, $subtitle); };
+        // assets;
+        self::asserts($msg, $received);
+        return;
     }
 
     /**

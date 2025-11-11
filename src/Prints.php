@@ -53,36 +53,34 @@ class Prints
 
             echo(date('Y-m-d H:i:s', strtotime('now')). " <<<<< LABEL: " . self::getLabel() . ':' . self::$index ."\n");
         }
-    }
-
+    }    
     /**
-     * Method block
+     * Method tests
      *
-     * @param mixed $sd [explicite description]
-     * @param array $backtrace [explicite description]
+     * @param array $asserts [explicite description]
      *
-     * @return String
+     * @return void
      */
-    public static function tests()
+    public static function tests($asserts)
     {
-        if (!empty(self::$asserts)) {
-            echo("\n".date('Y-m-d H:i:s', strtotime('now')). " <<<<< TESTS - usage memory (Bytes): ". memory_get_peak_usage() ."\n");
+        if (!empty($asserts)) {
+            echo("\n".date('Y-m-d H:i:s', strtotime('now')). " <<<<< TESTS\n");
             // print asserts
-            foreach(self::$asserts as $item){
+            foreach($asserts as $item){
                 foreach($item as $key => $value){
                     echo(date('Y-m-d H:i:s', strtotime('now'))." <<<<< <<<<< {$key}: {$value}\n");
                 }
-                echo(date('Y-m-d H:i:s', strtotime('now'))."\n");
             }
             // end
-            echo("\n".date('Y-m-d H:i:s', strtotime('now')). " <<<<< TESTS - END\n");
+            echo(date('Y-m-d H:i:s', strtotime('now')). " <<<<< TESTS - usage memory (Bytes): ". memory_get_peak_usage() ."\n");
+            echo(date('Y-m-d H:i:s', strtotime('now'))."\n");
         }
     }
         
     /**
      * Method envs
      *
-     * @param $propertys $propertys [explicite description]
+     * @param bool $propertys [explicite description]
      *
      * @return array
      */
@@ -242,7 +240,9 @@ class Prints
     public static function asserts($msg, $typeReceived, $error = null)
     {
         if((isset($msg) && !empty($msg) && isset($typeReceived))){
-            self::setAsserts(array('msg' => $msg, 'type received' => $typeReceived, 'error' => $error));
+            $assert = array('msg' => $msg, 'type received' => $typeReceived, 'error' => $error);
+            self::setAsserts($assert);
+            self::tests(array($assert));
         }
     }
 
