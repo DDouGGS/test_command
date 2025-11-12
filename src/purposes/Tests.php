@@ -12,7 +12,7 @@ class Tests extends Prints implements TestsInterface
     protected static $test = '';
 
     // mensagens
-    const FAILED_TEST = "\033[35m%s:%s - NÃO passou no teste.\033[0m";
+    const FAILED_TEST = "\033[35m%s:%s - Nï¿½O passou no teste.\033[0m";
     const PASSED_TEST = "\033[34m%s:%s - PASSOU no teste.\033[0m";
 
     /**
@@ -31,18 +31,25 @@ class Tests extends Prints implements TestsInterface
         $cfg = (array) self::getConfigs();
         // test
         // carrega arquivo de test
-        // utilizar configurações de namespace
+        // utilizar configuraï¿½ï¿½es de namespace
         // O arquivo de ter seu nome com final '_test' sempre
         $obj = $cfg['configs']['testNamespace'] . str_replace('.php','',self::getTest());
-        // carrega o arquivo da classe na memória
-        require_once($cfg['configs']['testFolder'] . self::getTest());
-        // A classe de test deve ter o mesmo nome do arquivo
-        $obj = new $obj();
-        // Toda função de teste deve iniciar com a seguinte particula: 'test_'
-        foreach(get_class_methods($obj) as $item){
-            if(strpos($item, 'test_') !== false){ $obj->$item();} 
+        try{
+            if(!file_exists($obj)){
+                echo "\033[35mNÃ£o existe o arquivo de teste.\033[0m";
+            }
+            // carrega o arquivo da classe na memï¿½ria
+            require_once($cfg['configs']['testFolder'] . self::getTest());
+            // A classe de test deve ter o mesmo nome do arquivo
+            $obj = new $obj();
+            // Toda funï¿½ï¿½o de teste deve iniciar com a seguinte particula: 'test_'
+            foreach(get_class_methods($obj) as $item){
+                if(strpos($item, 'test_') !== false){ $obj->$item();} 
+            }
+            self::footer();
+        }catch(\Exception $e){
+            echo "\033[35mExeption: {$e->getMessage()}\033[0m";
         }
-        self::footer();
         return;
     }
 
@@ -70,7 +77,7 @@ class Tests extends Prints implements TestsInterface
         $received = null;
         try{
             if(!isset($callback)){
-                throw new \Exception("Não identificada a variável 'callback'");
+                throw new \Exception("Nï¿½o identificada a variï¿½vel 'callback'");
             }
             $received = $callback();
             $this->compare(
@@ -101,7 +108,7 @@ class Tests extends Prints implements TestsInterface
         $received = null;
         try{
             if(!isset($callback)){
-                throw new \Exception("Não identificada a variável 'callback'");
+                throw new \Exception("Nï¿½o identificada a variï¿½vel 'callback'");
             }
             $received = $callback();
             preg_match_all($regex, $received, $matchs);
@@ -131,7 +138,7 @@ class Tests extends Prints implements TestsInterface
         $received = null;
         try{
             if(!isset($callback)){
-                throw new \Exception("Não identificada a variável 'callback'");
+                throw new \Exception("Nï¿½o identificada a variï¿½vel 'callback'");
             }
             $received = $callback();
             $this->compare(
@@ -161,7 +168,7 @@ class Tests extends Prints implements TestsInterface
         $received = null;
         try{
             if(!isset($callback)){
-                throw new \Exception("Não identificada a variável 'callback'");
+                throw new \Exception("Nï¿½o identificada a variï¿½vel 'callback'");
             }
             $received = $callback();
             $this->compare(
@@ -191,7 +198,7 @@ class Tests extends Prints implements TestsInterface
         $received = null;
         try{
             if(!isset($callback)){
-                throw new \Exception("Não identificada a variável 'callback'");
+                throw new \Exception("Nï¿½o identificada a variï¿½vel 'callback'");
             }
             $received = $callback();
             $this->compare(
@@ -220,7 +227,7 @@ class Tests extends Prints implements TestsInterface
         $received = null;
         try{
             if(!isset($callback)){
-                throw new \Exception("Não identificada a variável 'callback'");
+                throw new \Exception("Nï¿½o identificada a variï¿½vel 'callback'");
             }
             $received = $callback();
             $this->compare(
@@ -249,7 +256,7 @@ class Tests extends Prints implements TestsInterface
         $received = null;
         try{
             if(!isset($callback)){
-                throw new \Exception("Não identificada a variável 'callback'");
+                throw new \Exception("Nï¿½o identificada a variï¿½vel 'callback'");
             }
             $received = $callback();
             $this->compare(
@@ -279,7 +286,7 @@ class Tests extends Prints implements TestsInterface
         $received = null;
         try{
             if(!isset($callback)){
-                throw new \Exception("Não identificada a variável 'callback'");
+                throw new \Exception("Nï¿½o identificada a variï¿½vel 'callback'");
             }
             $received = $callback();
             $this->compare(
@@ -309,7 +316,7 @@ class Tests extends Prints implements TestsInterface
         $received = null;
         try{
             if(!isset($callback)){
-                throw new \Exception("Não identificada a variável 'callback'");
+                throw new \Exception("Nï¿½o identificada a variï¿½vel 'callback'");
             }
             $received = $callback();
             $this->compare(
@@ -339,7 +346,7 @@ class Tests extends Prints implements TestsInterface
         $received = null;
         try{
             if(!isset($callback)){
-                throw new \Exception("Não identificada a variável 'callback'");
+                throw new \Exception("Nï¿½o identificada a variï¿½vel 'callback'");
             }
             $received = $callback();
             $this->compare(
@@ -369,7 +376,7 @@ class Tests extends Prints implements TestsInterface
         $received = null;
         try{
             if(!isset($callback)){
-                throw new \Exception("Não identificada a variável 'callback'");
+                throw new \Exception("Nï¿½o identificada a variï¿½vel 'callback'");
             }
             $received = $callback();
             $this->compare(
@@ -399,7 +406,7 @@ class Tests extends Prints implements TestsInterface
         $received = null;
         try{
             if(!isset($callback)){
-                throw new \Exception("Não identificada a variável 'callback'");
+                throw new \Exception("Nï¿½o identificada a variï¿½vel 'callback'");
             }
             $received = $callback();
             $this->compare(
@@ -428,7 +435,7 @@ class Tests extends Prints implements TestsInterface
         $received = null;
         try{
             if(!isset($callback)){
-                throw new \Exception("Não identificada a variável 'callback'");
+                throw new \Exception("Nï¿½o identificada a variï¿½vel 'callback'");
             }
             $received = $callback();
             $this->compare(
@@ -457,18 +464,18 @@ class Tests extends Prints implements TestsInterface
         $received = null;
         try{
             if(!isset($callback)){
-                throw new \Exception("Não identificada a variável 'callback'");
+                throw new \Exception("Nï¿½o identificada a variï¿½vel 'callback'");
             }
             $received = $callback();
             $this->compare(
                 $received, 
                 $received === true, 
                 $title, 
-                'assertTrue2'
+                'assertTrue'
             );
             return;
         }catch(\Exception $e){
-            self::asserts(sprintf(self::FAILED_TEST, $title, 'assertTrue2'), $received, $e->getMessage());
+            self::asserts(sprintf(self::FAILED_TEST, $title, 'assertTrue'), $received, $e->getMessage());
             return;
         }
     }
