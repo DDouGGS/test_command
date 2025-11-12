@@ -4,6 +4,9 @@ namespace test_command;
 
 class Prints
 {
+    const TEST_ERROR = "\033[35mE\033[0m";
+    const TEST_PASSED = "\033[34mP\033[0m";
+
     protected static $protocol;
     protected static $index   = 1;
     protected static $label   = '';
@@ -16,6 +19,7 @@ class Prints
     protected static $connection = null;
     protected static $follow = true;
     protected static $asserts  = array();
+    protected static $assertsSeq = '';
 
     /**
      * Method __construct
@@ -53,7 +57,26 @@ class Prints
 
             echo(date('Y-m-d H:i:s', strtotime('now')). " <<<<< LABEL: " . self::getLabel() . ':' . self::$index ."\n");
         }
-    }    
+    }
+
+    /**
+     * Method footer
+     *
+     * @return void
+     */
+    public static function footer()
+    {
+        if (!empty(self::$assertsSeq)) {
+            $sequence = self::getAssertsSeq();
+            echo("\n".date('Y-m-d H:i:s', strtotime('now')). " <<<<< RESULTS\n");
+            // asserts sequence
+            echo(date('Y-m-d H:i:s', strtotime('now'))." <<<<< <<<<< {$sequence}\n");
+            // end
+            echo(date('Y-m-d H:i:s', strtotime('now')). " <<<<< RESULTS - usage memory (Bytes): ". memory_get_peak_usage() ."\n");
+            echo(date('Y-m-d H:i:s', strtotime('now'))."\n");
+        }
+    }
+
     /**
      * Method tests
      *
@@ -72,11 +95,11 @@ class Prints
                 }
             }
             // end
-            echo(date('Y-m-d H:i:s', strtotime('now')). " <<<<< TESTS - usage memory (Bytes): ". memory_get_peak_usage() ."\n");
+            echo(date('Y-m-d H:i:s', strtotime('now')). " <<<<< TESTS\n");
             echo(date('Y-m-d H:i:s', strtotime('now'))."\n");
         }
     }
-        
+
     /**
      * Method envs
      *
@@ -430,5 +453,25 @@ class Prints
     public static function setAsserts($asserts)
     {
         if(isset($asserts) && !empty($asserts)) { self::$asserts[] = $asserts;}
+    }
+
+    /**
+     * Get the value of assertsSeq
+     */ 
+    public static function getAssertsSeq()
+    {
+        return self::$assertsSeq;
+    }
+
+    /**
+     * Set the value of assertsSeq
+     *
+     * @return  self
+     */ 
+    public static function setAssertsSeq($assertsSeq)
+    {
+        if(isset($assertsSeq) || !empty($assertsSeq)){
+            self::$assertsSeq = self::$assertsSeq . $assertsSeq;
+        }
     }
 }
