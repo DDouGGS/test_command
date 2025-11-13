@@ -84,9 +84,9 @@ abstract class TC
      *      null:       Um valor especial que representa "nenhum valor".
      *      resource:   Um ponteiro para um recurso externo (como arquivos ou banco de dados).
      */
-    public static function assertSame($type, $callback, $condition = true)
+    public static function assertSame($type, $callback, $title = __FUNCTION__)
     {
-        self::getTests()->assertSame($type, $callback, $condition);
+        self::getTests()->assertSame($type, $callback, $title);
     }
 
     /**
@@ -99,9 +99,9 @@ abstract class TC
      * @return void
      * 
      */
-    public static function assertRegExp($regex, $callback, $condition = true)
+    public static function assertRegExp($regex, $callback, $title = __FUNCTION__)
     {
-        self::getTests()->assertRegExp($regex, $callback, $condition);
+        self::getTests()->assertRegExp($regex, $callback, $title);
     }
 
     /**
@@ -112,9 +112,9 @@ abstract class TC
      *
      * @return void
      */
-    public static function assertEmpty($callback, $condition = true)
+    public static function assertEmpty($callback, $title = __FUNCTION__)
     {
-        self::getTests()->assertEmpty($callback, $condition);
+        self::getTests()->assertEmpty($callback, $title);
     }
 
     /**
@@ -126,9 +126,9 @@ abstract class TC
      *
      * @return void
      */
-    public static function assertEquals($equal, $callback, $condition = true)
+    public static function assertEquals($equal, $callback, $title = __FUNCTION__)
     {
-        self::getTests()->assertEquals($equal, $callback, $condition);
+        self::getTests()->assertEquals($equal, $callback, $title);
     }
 
     /**
@@ -140,9 +140,9 @@ abstract class TC
      *
      * @return void
      */
-    public static function assertDiff($diff, $callback, $condition = true)
+    public static function assertDiff($diff, $callback, $title = __FUNCTION__)
     {
-        self::getTests()->assertDiff($diff, $callback, $condition);
+        self::getTests()->assertDiff($diff, $callback, $title);
     }
 
     /**
@@ -153,9 +153,9 @@ abstract class TC
      *
      * @return void
      */
-    public static function assertFalse($callback, $condition = true)
+    public static function assertFalse($callback, $title = __FUNCTION__)
     {
-        self::getTests()->assertFalse($callback, $condition);
+        self::getTests()->assertFalse($callback, $title);
     }
 
     /**
@@ -166,9 +166,9 @@ abstract class TC
      *
      * @return void
      */
-    public static function assertFileExists($callback, $condition = true)
+    public static function assertFileExists($callback, $title = __FUNCTION__)
     {
-        self::getTests()->assertFileExists($callback, $condition);
+        self::getTests()->assertFileExists($callback, $title);
     }
 
     /**
@@ -180,9 +180,9 @@ abstract class TC
      *
      * @return void
      */
-    public static function assertGreaterThan($term, $callback, $condition = true)
+    public static function assertGreaterThan($term, $callback, $title = __FUNCTION__)
     {
-        self::getTests()->assertGreaterThan($term, $callback, $condition);
+        self::getTests()->assertGreaterThan($term, $callback, $title);
     }
 
     /**
@@ -194,9 +194,9 @@ abstract class TC
      *
      * @return void
      */
-    public static function assertGreaterThanOrEqual($term, $callback, $condition = true)
+    public static function assertGreaterThanOrEqual($term, $callback, $title = __FUNCTION__)
     {
-        self::getTests()->assertGreaterThanOrEqual($term, $callback, $condition);
+        self::getTests()->assertGreaterThanOrEqual($term, $callback, $title);
     }
 
     /**
@@ -208,9 +208,9 @@ abstract class TC
      *
      * @return void
      */
-    public static function assertInstanceOf($instancia, $callback, $condition = true)
+    public static function assertInstanceOf($instancia, $callback, $title = __FUNCTION__)
     {
-        self::getTests()->assertInstanceOf($instancia, $callback, $condition);
+        self::getTests()->assertInstanceOf($instancia, $callback, $title);
     }
 
     /**
@@ -222,9 +222,9 @@ abstract class TC
      *
      * @return void
      */
-    public static function assertLessThan($term, $callback, $condition = true)
+    public static function assertLessThan($term, $callback, $title = __FUNCTION__)
     {
-        self::getTests()->assertLessThan($term, $callback, $condition);
+        self::getTests()->assertLessThan($term, $callback, $title);
     }
 
     /**
@@ -236,9 +236,9 @@ abstract class TC
      *
      * @return void
      */
-    public static function assertLessThanOrEqual($term, $callback, $condition = true)
+    public static function assertLessThanOrEqual($term, $callback, $title = __FUNCTION__)
     {
-        self::getTests()->assertLessThanOrEqual($term, $callback, $condition);
+        self::getTests()->assertLessThanOrEqual($term, $callback, $title);
     }
 
     /**
@@ -249,9 +249,9 @@ abstract class TC
      *
      * @return void
      */
-    public static function assertNull($callback, $condition = true)
+    public static function assertNull($callback, $title = __FUNCTION__)
     {
-        self::getTests()->assertNull($callback, $condition);
+        self::getTests()->assertNull($callback, $title);
     }
 
     /**
@@ -262,22 +262,9 @@ abstract class TC
      *
      * @return void
      */
-    public static function assertTrue($callback, $condition = true)
+    public static function assertTrue($callback, $title = __FUNCTION__)
     {
-        self::getTests()->assertTrue($callback, $condition);
-    }
-    
-    /**
-     * Method assertTrue2
-     *
-     * @param Closure $callback [explicite description]
-     * @param string $title [explicite description]
-     *
-     * @return void
-     */
-    public static function assertTrue2( $callback, $title = 'teste')
-    {
-        self::getTests()->assertTrue2($callback, $title);
+        self::getTests()->assertTrue($callback, $title);
     }
 
     /**

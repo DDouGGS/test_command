@@ -64,9 +64,14 @@ class Prints
      *
      * @return void
      */
-    public static function footer()
+    public static function printTests()
     {
-        if (!empty(self::$assertsSeq)) {
+        $asserts = self::getAsserts();
+        if (!empty($asserts)) {
+            echo(date('Y-m-d H:i:s', strtotime('now'))."\n");
+            foreach($asserts as $item){
+                self::tests($item);
+            }
             $sequence = self::getAssertsSeq();
             echo("\n".date('Y-m-d H:i:s', strtotime('now')). " <<<<< RESULTS\n");
             // asserts sequence
@@ -87,15 +92,11 @@ class Prints
     public static function tests($asserts)
     {
         if (!empty($asserts)) {
-            echo("\n".date('Y-m-d H:i:s', strtotime('now')). " <<<<< TESTS\n");
             // print asserts
-            foreach($asserts as $item){
-                foreach($item as $key => $value){
-                    echo(date('Y-m-d H:i:s', strtotime('now'))." <<<<< <<<<< {$key}: {$value}\n");
-                }
+            foreach($asserts as $key => $value){
+                echo(date('Y-m-d H:i:s', strtotime('now'))." <<<<< <<<<< {$key}: {$value}\n");
             }
             // end
-            echo(date('Y-m-d H:i:s', strtotime('now')). " <<<<< TESTS\n");
             echo(date('Y-m-d H:i:s', strtotime('now'))."\n");
         }
     }
@@ -222,13 +223,13 @@ class Prints
         if (self::getSimple()) {
             foreach ($debugBacktrace as $item) {
                 if($count === 2){
-                    self::setReference(' ['  . $item['file'] . ' | ' . $item['line'] . ']');
+                    self::setReference($item['file'] . ' --- ' . $item['line']);
                     self::setLabel(self::getReference());
                 }
                 if ($item['function'] !== 'backtratce') {
                     $class = isset($item['class'])? $item['class']: null;
                     $type  = isset($item['type'])? $item['type']: null;
-                    $trace .= " <<<<< " . ' ['  . $class . $type . $item['function'] . "];\n";
+                    $trace .= " <<<<< " . $class . $type . $item['function'] . "\n";
                 }
                 ++$count;
             }
@@ -237,13 +238,13 @@ class Prints
 
         foreach ($debugBacktrace as $item) {
             if($count === 2){
-                    self::setReference(' ['  . $item['file'] . ' | ' . $item['line'] . ']');
+                    self::setReference($item['file'] . ' --- ' . $item['line']);
                     self::setLabel(self::getReference());
                 }
             if ($item['function'] !== 'backtrace') {
                 $class = isset($item['class'])? $item['class']: null;
                 $type  = isset($item['type'])? $item['type']: null;
-                $trace .= " <<<<< " . ' ['  . $item['file'] . ' | ' . $item['line'] . '] - [' . $class . $type . $item['function'] . "];\n";
+                $trace .= " <<<<< " . $item['file'] . ' --- ' . $item['line'] . ' --- ' . $class . $type . $item['function'] . "\n";
             }
             ++$count;
         }
@@ -260,12 +261,11 @@ class Prints
      *
      * @return void
      */
-    public static function asserts($msg, $typeReceived, $error = null)
+    public static function asserts($title, $msg, $typeReceived, $error = null)
     {
         if((isset($msg) && !empty($msg) && isset($typeReceived))){
-            $assert = array('msg' => $msg, 'type received' => $typeReceived, 'error' => $error);
+            $assert = array('TEST' => $title, 'msg' => $msg, 'type received' => gettype($typeReceived), 'exception' => $error);
             self::setAsserts($assert);
-            self::tests(array($assert));
         }
     }
 

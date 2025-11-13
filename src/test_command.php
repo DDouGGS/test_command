@@ -18,7 +18,12 @@ try{
     );
     // requires
     foreach($cfg['configs']['requires'] as $item){
-        require_once($cfg['configs']['baseFolder'] . $item);
+        $obj = $cfg['configs']['baseFolder'] . $item;
+        if(!file_exists($obj)){
+            echo "\033[35mArquivo a ser carregado NÃO existe ({$obj}}.\033[0m";
+            continue;
+        }
+        require_once($obj);
     }
     // testing
     require(__DIR__ .'/TC.php');
