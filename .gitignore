@@ -1,6 +1,7 @@
 # VSCode
 /.vscode/
 *.code_workspace
+command_line_testing.code-workspace
 
 # mixed
 *.drawio*

@@ -73,9 +73,8 @@ class Prints
                 self::tests($item);
             }
             $sequence = self::getAssertsSeq();
-            echo("\n".date('Y-m-d H:i:s', strtotime('now')). " <<<<< RESULTS\n");
             // asserts sequence
-            echo(date('Y-m-d H:i:s', strtotime('now'))." <<<<< <<<<< {$sequence}\n");
+            echo(date('Y-m-d H:i:s', strtotime('now'))." <<<<< RESULTS: {$sequence}\n");
             // end
             echo(date('Y-m-d H:i:s', strtotime('now')). " <<<<< RESULTS - usage memory (Bytes): ". memory_get_peak_usage() ."\n");
             echo(date('Y-m-d H:i:s', strtotime('now'))."\n");
@@ -96,8 +95,6 @@ class Prints
             foreach($asserts as $key => $value){
                 echo(date('Y-m-d H:i:s', strtotime('now'))." <<<<< <<<<< {$key}: {$value}\n");
             }
-            // end
-            echo(date('Y-m-d H:i:s', strtotime('now'))."\n");
         }
     }
 

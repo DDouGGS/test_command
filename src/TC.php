@@ -66,27 +66,100 @@ abstract class TC
     }
 
     /**
-     * Method assertSame
+     * Method assertBool
      *
-     * @param string $type [explicite description]
-     * @param bool   $callback [explicite description]
-     * @param bool   $condition [explicite description]
+     * @param Closure   $callback [explicite description]
+     * @param bool      $condition [explicite description]
      *
      * @return void
      * 
-     * Tipos de Dados ($type):
-     *      string:     Para texto.
-     *      int:        Nmeros inteiros (ex: 10, -5).
-     *      float:      Nmeros de ponto flutuante (ex: 3.14, 0.5).
-     *      bool:       Valores lgicos (true ou false).
-     *      array:      Coleo de valores. 
-     *      object:     Instncias de classes.
-     *      null:       Um valor especial que representa "nenhum valor".
-     *      resource:   Um ponteiro para um recurso externo (como arquivos ou banco de dados).
      */
-    public static function assertSame($type, $callback, $title = __FUNCTION__)
+    public function assertBool($callback, $title = __FUNCTION__)
     {
-        self::getTests()->assertSame($type, $callback, $title);
+        self::getTests()->assertBool($callback, $title);
+    }
+
+    /**
+     * Method assertString
+     *
+     * @param Closure   $callback [explicite description]
+     * @param bool      $condition [explicite description]
+     *
+     * @return void
+     * 
+     */
+    public function assertString($callback, $title = __FUNCTION__)
+    {
+        self::getTests()->assertString($callback, $title);
+    }
+
+    /**
+     * Method assertInt
+     *
+     * @param Closure   $callback [explicite description]
+     * @param bool      $condition [explicite description]
+     *
+     * @return void
+     * 
+     */
+    public function assertInt($callback, $title = __FUNCTION__)
+    {
+        self::getTests()->assertInt($callback, $title);
+    }
+    /**
+     * Method assertFloat
+     *
+     * @param Closure   $callback [explicite description]
+     * @param bool      $condition [explicite description]
+     *
+     * @return void
+     * 
+     */
+    public function assertFloat($callback, $title = __FUNCTION__)
+    {
+        self::getTests()->assertFloat($callback, $title);
+    }
+
+    /**
+     * Method assertArray
+     *
+     * @param Closure   $callback [explicite description]
+     * @param bool      $condition [explicite description]
+     *
+     * @return void
+     * 
+     */
+    public function assertArray($callback, $title = __FUNCTION__)
+    {
+        self::getTests()->assertArray($callback, $title);
+    }
+
+    /**
+     * Method assertObject
+     *
+     * @param Closure   $callback [explicite description]
+     * @param bool      $condition [explicite description]
+     *
+     * @return void
+     * 
+     */
+    public function assertObject($callback, $title = __FUNCTION__)
+    {
+        self::getTests()->assertObject($callback, $title);
+    }
+
+    /**
+     * Method assertResource
+     *
+     * @param Closure   $callback [explicite description]
+     * @param bool      $condition [explicite description]
+     *
+     * @return void
+     * .
+     */
+    public function assertResource($callback, $title = __FUNCTION__)
+    {
+        self::getTests()->assertResource($callback, $title);
     }
 
     /**

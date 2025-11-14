@@ -54,25 +54,15 @@ class Tests extends Prints implements TestsInterface
     }
 
     /**
-     * Method assertSame
+     * Method assertBool
      *
-     * @param string    $type [explicite description]
      * @param Closure   $callback [explicite description]
      * @param bool      $condition [explicite description]
      *
      * @return void
      * 
-     * Tipos de Dados ($type):
-     *      string:     Para texto.
-     *      int:        Números inteiros (ex: 10, -5).
-     *      float:      Números de ponto flutuante (ex: 3.14, 0.5).
-     *      bool:       Valores lógicos (true ou false).
-     *      array:      Colação de valores. 
-     *      object:     Instancias de classes.
-     *      null:       Um valor especial que representa "nenhum valor".
-     *      resource:   Um ponteiro para um recurso externo (como arquivos ou banco de dados).
      */
-    public function assertSame($type, $callback, $title = 'teste')
+    public function assertBool($callback, $title = 'teste')
     {
         $received = null;
         try{
@@ -82,7 +72,186 @@ class Tests extends Prints implements TestsInterface
             $received = $callback();
             $this->compare(
                 $received, 
-                gettype($received) === $type, 
+                gettype($received) === 'bool', 
+                $title, 
+                __FUNCTION__
+            );
+            return;
+        }catch(\Exception $e){
+            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            return;
+        }
+    }
+
+    /**
+     * Method assertString
+     *
+     * @param Closure   $callback [explicite description]
+     * @param bool      $condition [explicite description]
+     *
+     * @return void
+     * 
+     */
+    public function assertString($callback, $title = 'teste')
+    {
+        $received = null;
+        try{
+            if(!isset($callback)){
+                throw new \Exception("Não identificada a variável 'callback'");
+            }
+            $received = $callback();
+            $this->compare(
+                $received, 
+                gettype($received) === 'string', 
+                $title, 
+                __FUNCTION__
+            );
+            return;
+        }catch(\Exception $e){
+            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            return;
+        }
+    }
+
+    /**
+     * Method assertInt
+     *
+     * @param Closure   $callback [explicite description]
+     * @param bool      $condition [explicite description]
+     *
+     * @return void
+     * 
+     */
+    public function assertInt($callback, $title = 'teste')
+    {
+        $received = null;
+        try{
+            if(!isset($callback)){
+                throw new \Exception("Não identificada a variável 'callback'");
+            }
+            $received = $callback();
+            $this->compare(
+                $received, 
+                gettype($received) === 'int', 
+                $title, 
+                __FUNCTION__
+            );
+            return;
+        }catch(\Exception $e){
+            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            return;
+        }
+    }
+    /**
+     * Method assertFloat
+     *
+     * @param Closure   $callback [explicite description]
+     * @param bool      $condition [explicite description]
+     *
+     * @return void
+     * 
+     */
+    public function assertFloat($callback, $title = 'teste')
+    {
+        $received = null;
+        try{
+            if(!isset($callback)){
+                throw new \Exception("Não identificada a variável 'callback'");
+            }
+            $received = $callback();
+            $this->compare(
+                $received, 
+                gettype($received) === 'float', 
+                $title, 
+                __FUNCTION__
+            );
+            return;
+        }catch(\Exception $e){
+            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            return;
+        }
+    }
+
+    /**
+     * Method assertArray
+     *
+     * @param Closure   $callback [explicite description]
+     * @param bool      $condition [explicite description]
+     *
+     * @return void
+     * 
+     */
+    public function assertArray($callback, $title = 'teste')
+    {
+        $received = null;
+        try{
+            if(!isset($callback)){
+                throw new \Exception("Não identificada a variável 'callback'");
+            }
+            $received = $callback();
+            $this->compare(
+                $received, 
+                gettype($received) === 'array', 
+                $title, 
+                __FUNCTION__
+            );
+            return;
+        }catch(\Exception $e){
+            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            return;
+        }
+    }
+
+    /**
+     * Method assertObject
+     *
+     * @param Closure   $callback [explicite description]
+     * @param bool      $condition [explicite description]
+     *
+     * @return void
+     * 
+     */
+    public function assertObject($callback, $title = 'teste')
+    {
+        $received = null;
+        try{
+            if(!isset($callback)){
+                throw new \Exception("Não identificada a variável 'callback'");
+            }
+            $received = $callback();
+            $this->compare(
+                $received, 
+                gettype($received) === 'object', 
+                $title, 
+                __FUNCTION__
+            );
+            return;
+        }catch(\Exception $e){
+            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            return;
+        }
+    }
+
+    /**
+     * Method assertResource
+     *
+     * @param Closure   $callback [explicite description]
+     * @param bool      $condition [explicite description]
+     *
+     * @return void
+     * .
+     */
+    public function assertResource($callback, $title = 'teste')
+    {
+        $received = null;
+        try{
+            if(!isset($callback)){
+                throw new \Exception("Não identificada a variável 'callback'");
+            }
+            $received = $callback();
+            $this->compare(
+                $received, 
+                gettype($received) === 'resource', 
                 $title, 
                 __FUNCTION__
             );

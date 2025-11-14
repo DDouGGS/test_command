@@ -15,25 +15,80 @@ interface TestsInterface
     public function testing($configs = null, $test = null);
 
     /**
-     * Method assertSame
+     * Method assertBool
      *
-     * @param string    $type [explicite description]
      * @param Closure   $callback [explicite description]
-     * @param string    $title [explicite description]
+     * @param bool      $condition [explicite description]
      *
      * @return void
      * 
-     * Tipos de Dados ($type):
-     *      string:     Para texto.
-     *      int:        Nï¿½meros inteiros (ex: 10, -5).
-     *      float:      Nï¿½meros de ponto flutuante (ex: 3.14, 0.5).
-     *      bool:       Valores lï¿½gicos (true ou false).
-     *      array:      Coleï¿½ï¿½o de valores. 
-     *      object:     Instï¿½ncias de classes.
-     *      null:       Um valor especial que representa "nenhum valor".
-     *      resource:   Um ponteiro para um recurso externo (como arquivos ou banco de dados).
      */
-    public function assertSame($type, $callback, $title = 'teste');
+    public function assertBool($callback, $title = 'teste');
+
+    /**
+     * Method assertString
+     *
+     * @param Closure   $callback [explicite description]
+     * @param bool      $condition [explicite description]
+     *
+     * @return void
+     * 
+     */
+    public function assertString($callback, $title = 'teste');
+
+    /**
+     * Method assertInt
+     *
+     * @param Closure   $callback [explicite description]
+     * @param bool      $condition [explicite description]
+     *
+     * @return void
+     * 
+     */
+    public function assertInt($callback, $title = 'teste');
+    /**
+     * Method assertFloat
+     *
+     * @param Closure   $callback [explicite description]
+     * @param bool      $condition [explicite description]
+     *
+     * @return void
+     * 
+     */
+    public function assertFloat($callback, $title = 'teste');
+
+    /**
+     * Method assertArray
+     *
+     * @param Closure   $callback [explicite description]
+     * @param bool      $condition [explicite description]
+     *
+     * @return void
+     * 
+     */
+    public function assertArray($callback, $title = 'teste');
+
+    /**
+     * Method assertObject
+     *
+     * @param Closure   $callback [explicite description]
+     * @param bool      $condition [explicite description]
+     *
+     * @return void
+     * 
+     */
+    public function assertObject($callback, $title = 'teste');
+
+    /**
+     * Method assertResource
+     *
+     * @param Closure   $callback [explicite description]
+     * @param bool      $condition [explicite description]
+     *
+     * @return void
+     * .
+     */
+    public function assertResource($callback, $title = 'teste');
 
     /**
      * Method assertRegExp
