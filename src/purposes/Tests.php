@@ -71,9 +71,9 @@ class Tests extends Prints implements TestsInterface
             }
             $received = $callback();
             $this->compare(
-                $received, 
-                gettype($received) === 'boolean', 
-                $title, 
+                $received,
+                gettype($received) === 'boolean',
+                $title,
                 __FUNCTION__
             );
             return;
@@ -101,9 +101,9 @@ class Tests extends Prints implements TestsInterface
             }
             $received = $callback();
             $this->compare(
-                $received, 
-                gettype($received) === 'string', 
-                $title, 
+                $received,
+                gettype($received) === 'string',
+                $title,
                 __FUNCTION__
             );
             return;
@@ -131,9 +131,9 @@ class Tests extends Prints implements TestsInterface
             }
             $received = $callback();
             $this->compare(
-                $received, 
-                gettype($received) === 'int', 
-                $title, 
+                $received,
+                gettype($received) === 'integer',
+                $title,
                 __FUNCTION__
             );
             return;
@@ -160,9 +160,9 @@ class Tests extends Prints implements TestsInterface
             }
             $received = $callback();
             $this->compare(
-                $received, 
-                gettype($received) === 'float', 
-                $title, 
+                $received,
+                gettype($received) === 'double',
+                $title,
                 __FUNCTION__
             );
             return;
@@ -190,9 +190,9 @@ class Tests extends Prints implements TestsInterface
             }
             $received = $callback();
             $this->compare(
-                $received, 
-                gettype($received) === 'array', 
-                $title, 
+                $received,
+                gettype($received) === 'array',
+                $title,
                 __FUNCTION__
             );
             return;
@@ -220,9 +220,9 @@ class Tests extends Prints implements TestsInterface
             }
             $received = $callback();
             $this->compare(
-                $received, 
-                gettype($received) === 'object', 
-                $title, 
+                $received,
+                gettype($received) === 'object',
+                $title,
                 __FUNCTION__
             );
             return;
@@ -250,9 +250,9 @@ class Tests extends Prints implements TestsInterface
             }
             $received = $callback();
             $this->compare(
-                $received, 
-                gettype($received) === 'resource', 
-                $title, 
+                $received,
+                gettype($received) === 'resource',
+                $title,
                 __FUNCTION__
             );
             return;
@@ -282,9 +282,9 @@ class Tests extends Prints implements TestsInterface
             $received = $callback();
             preg_match_all($regex, $received, $matchs);
             $this->compare(
-                $received, 
-                !empty($matchs), 
-                $title, 
+                $received,
+                !empty($matchs),
+                $title,
                 __FUNCTION__
             );
             return;
@@ -311,9 +311,9 @@ class Tests extends Prints implements TestsInterface
             }
             $received = $callback();
             $this->compare(
-                $received, 
-                empty($received), 
-                $title, 
+                $received,
+                empty($received),
+                $title,
                 __FUNCTION__
             );
             return;
@@ -341,9 +341,9 @@ class Tests extends Prints implements TestsInterface
             }
             $received = $callback();
             $this->compare(
-                $received, 
-                $received == $equal, 
-                $title, 
+                $received,
+                $received == $equal,
+                $title,
                 __FUNCTION__
             );
             return;
@@ -371,9 +371,9 @@ class Tests extends Prints implements TestsInterface
             }
             $received = $callback();
             $this->compare(
-                $received, 
-                $received !== $diff, 
-                $title, 
+                $received,
+                $received !== $diff,
+                $title,
                 __FUNCTION__
             );
             return;
@@ -400,9 +400,9 @@ class Tests extends Prints implements TestsInterface
             }
             $received = $callback();
             $this->compare(
-                $received, 
-                $received === false, 
-                $title, 
+                $received,
+                $received === false,
+                $title,
                 __FUNCTION__
             );
             return;
@@ -429,9 +429,9 @@ class Tests extends Prints implements TestsInterface
             }
             $received = $callback();
             $this->compare(
-                $received, 
-                file_exists($received), 
-                $title, 
+                $received,
+                file_exists($received),
+                $title,
                 __FUNCTION__
             );
             return;
@@ -459,9 +459,9 @@ class Tests extends Prints implements TestsInterface
             }
             $received = $callback();
             $this->compare(
-                $received, 
-                $received > $term, 
-                $title, 
+                $received,
+                $received > $term,
+                $title,
                 __FUNCTION__
             );
             return;
@@ -489,9 +489,9 @@ class Tests extends Prints implements TestsInterface
             }
             $received = $callback();
             $this->compare(
-                $received, 
-                $received >= $term, 
-                $title, 
+                $received,
+                $received >= $term,
+                $title,
                 __FUNCTION__
             );
             return;
@@ -519,9 +519,9 @@ class Tests extends Prints implements TestsInterface
             }
             $received = $callback();
             $this->compare(
-                $received, 
-                $received instanceof $instancia, 
-                $title, 
+                $received,
+                $received instanceof $instancia,
+                $title,
                 __FUNCTION__
             );
             return;
@@ -549,9 +549,9 @@ class Tests extends Prints implements TestsInterface
             }
             $received = $callback();
             $this->compare(
-                $received, 
-                $received < $term, 
-                $title, 
+                $received,
+                $received < $term,
+                $title,
                 __FUNCTION__
             );
             return;
@@ -579,9 +579,9 @@ class Tests extends Prints implements TestsInterface
             }
             $received = $callback();
             $this->compare(
-                $received, 
-                $received <= $term, 
-                $title, 
+                $received,
+                $received <= $term,
+                $title,
                 __FUNCTION__
             );
             return;
@@ -608,9 +608,9 @@ class Tests extends Prints implements TestsInterface
             }
             $received = $callback();
             $this->compare(
-                $received, 
-                $received === null, 
-                $title, 
+                $received,
+                $received === null,
+                $title,
                 __FUNCTION__
             );
             return;
@@ -637,9 +637,9 @@ class Tests extends Prints implements TestsInterface
             }
             $received = $callback();
             $this->compare(
-                $received, 
-                $received === true, 
-                $title, 
+                $received,
+                $received === true,
+                $title,
                 __FUNCTION__
             );
             return;
