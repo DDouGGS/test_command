@@ -6,6 +6,23 @@
 */
 namespace test_command;
 
+/* Configurações de erro
+E_ALL: Reporta todos os erros e advertências.
+E_ERROR: Reporta erros fatais em tempo de execução. Estes indicam erros que não podem ser recuperados e causam a terminação do script.
+E_WARNING: Reporta advertências em tempo de execução. Estas são não-fatais e a execução do script normalmente continua.
+E_PARSE: Reporta erros de análise. Estes são gerados por falhas no analisador enquanto o script PHP está sendo compilado.
+E_NOTICE: Reporta avisos em tempo de execução. Normalmente indicam que o script encontrou algo que pode indicar um erro, mas que também pode acontecer durante a execução normal do script.
+
+error_reporting(E_ERROR | E_WARNING | E_NOTICE);
+
+function custom_error_handler($errno, $errstr, $errfile, $errline) {
+    echo "Erro ocorrido na linha $errline do arquivo $errfile: [Número $errno] $errstr";
+}
+set_error_handler("custom_error_handler");
+*/
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 // configs
 try{
     // config

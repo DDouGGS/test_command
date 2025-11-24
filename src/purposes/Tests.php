@@ -72,7 +72,7 @@ class Tests extends Prints implements TestsInterface
             $received = $callback();
             $this->compare(
                 $received, 
-                gettype($received) === 'bool', 
+                gettype($received) === 'boolean', 
                 $title, 
                 __FUNCTION__
             );
