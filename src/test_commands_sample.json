@@ -4,5 +4,7 @@
     ],
     "testNamespace": "tsts\\",
     "baseFolder": "/var/www/html/",
-    "testFolder": "/var/www/html/tsts/"
+    "testFolder": "/var/www/html/tsts/",
+    "modelFolder": "/var/www/html/model/",
+    "controllerFolder": "/var/www/html/controller/"
 }

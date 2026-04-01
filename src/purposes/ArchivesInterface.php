@@ -25,7 +25,7 @@ interface ArchivesInterface
      *
      * @return void
      */
-    function name($prefix, $month, $year, $sufix = null);
+    function name($title, $extencion = '.csv');
 
     /**
      * Method create

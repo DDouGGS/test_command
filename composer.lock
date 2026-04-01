@@ -1,0 +1,56 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "7ccc941f6cdcd0acb0d78f2e38c53e0a",
+    "packages": [
+        {
+            "name": "ddouggs/event_manager",
+            "version": "v0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DDouGGS/event_manager.git",
+                "reference": "568bcc45e72a3fef4cc52d8f56c361d0a839dbb0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DDouGGS/event_manager/zipball/568bcc45e72a3fef4cc52d8f56c361d0a839dbb0",
+                "reference": "568bcc45e72a3fef4cc52d8f56c361d0a839dbb0",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ddouggs\\incidents\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Douglas Gonçalves de Souza",
+                    "email": "ti.dougg@gmail.com"
+                }
+            ],
+            "description": "Dota sistema PHP quanto ao gerênciamento de eventos designados",
+            "support": {
+                "issues": "https://github.com/DDouGGS/event_manager/issues",
+                "source": "https://github.com/DDouGGS/event_manager/tree/v0.0.2"
+            },
+            "time": "2026-03-30T23:09:40+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {},
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {},
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
+}

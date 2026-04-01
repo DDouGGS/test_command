@@ -1,8 +1,10 @@
 <?php
 
+use test_command\purposes\Archives;
+
 namespace test_command;
 
-class Prints
+class Prints extends Archives
 {
     const TEST_ERROR = "\033[35mE\033[0m";
     const TEST_PASSED = "\033[34mP\033[0m";

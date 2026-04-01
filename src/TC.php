@@ -17,6 +17,11 @@ abstract class TC
     protected static $archives = null;
     protected static $breakpoints = null;
 
+    public function __construct()
+    {
+        $this->setArchives(new Archives());
+    }
+
     /**
      * Method existsTests
      *

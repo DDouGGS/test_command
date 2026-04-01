@@ -2,10 +2,9 @@
 
 namespace test_command\purposes;
 
-use test_command\Prints;
 use test_command\purposes\ArchivesInterface;
 
-class Archives extends Prints implements ArchivesInterface
+abstract class Archives implements ArchivesInterface
 {
     const carrierReturn = "\n";
 
@@ -44,14 +43,31 @@ class Archives extends Prints implements ArchivesInterface
      *
      * @return void
      */
-    function name($prefix, $month, $year, $sufix = null)
+    function name($title, $extencion = '.csv')
+    {
+        if (!isset($prefix) || empty($title)) {
+            return null;
+        }
+        $this->setName($title.$extencion);
+        return $this->getName();
+    }
+
+    /**
+     * Method nameDated - Nome para o arquivo
+     *
+     * @param string $prefix
+     * @param string $month
+     * @param int    $year
+     * @param string $sufix
+     *
+     * @return void
+     */
+    function nameDated($prefix, $month, $year, $sufix = null)
     {
         if (!isset($prefix) && !isset($month) && !isset($year)) {
             return null;
         }
-
         $this->setName($prefix . $month . '-' . $year  . $sufix . '.sql');
-
         return $this->getName();
     }
 
@@ -65,7 +81,7 @@ class Archives extends Prints implements ArchivesInterface
      */
     function create($name, $folder = null)
     {
-        if ((!isset($name) || empty($name)) && (!isset($folder) || empty($folder))) {
+        if ((!isset($name) || empty($name)) || (!isset($folder) || empty($folder))) {
             return null;
         }
 
@@ -89,9 +105,8 @@ class Archives extends Prints implements ArchivesInterface
     public function in($line)
     {
         if (!$this->getFile()) {
-            throw new \Exception('Nï¿½o encontrado o recurso de arquivo.');
+            throw new \Exception('Não encontrado o recurso de arquivo.');
         }
-
         return fwrite($this->getFile(), (string) $line);
     }
 
@@ -103,9 +118,8 @@ class Archives extends Prints implements ArchivesInterface
     function close()
     {
         if (!$this->getFile()) {
-            throw new \Exception('Nï¿½o encontrado o recurso de arquivo.');
+            throw new \Exception('Não encontrado o recurso de arquivo.');
         }
-
         return fclose($this->getFile());
     }
 

@@ -1,8 +1,11 @@
 # VSCode
 /.vscode/
-*.code_workspace
+*.code-workspace
 command_line_testing.code-workspace
 
+#vendor
+/vendor/
+
 # mixed
-*.drawio*
+*.drawio.bkp
 *.drawio
