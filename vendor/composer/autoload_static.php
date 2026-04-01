@@ -7,28 +7,29 @@ namespace Composer\Autoload;
 class ComposerStaticInit851d9bd5fb3099caffb2861c2c1c62cb
 {
     public static $prefixLengthsPsr4 = array (
-        't' => 
+        't' =>
         array (
             'test_command\\' => 13,
+        ),
+        'd' =>
+        array (
+            'ddouggs\\event_manager\\' => 22,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'test_command\\' => 
+        'test_command\\' =>
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'ddouggs\\event_manager\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/ddouggs/event_manager/src',
         ),
     );
 
     public static $classMap = array (
-        'test_command\\Prints' => __DIR__ . '/../..' . '/src/Prints.php',
-        'test_command\\TC' => __DIR__ . '/../..' . '/src/TC.php',
-        'test_command\\purposes\\Archives' => __DIR__ . '/../..' . '/src/purposes/Archives.php',
-        'test_command\\purposes\\ArchivesInterface' => __DIR__ . '/../..' . '/src/purposes/ArchivesInterface.php',
-        'test_command\\purposes\\Breakpoints' => __DIR__ . '/../..' . '/src/purposes/Breakpoints.php',
-        'test_command\\purposes\\BreakpointsInterface' => __DIR__ . '/../..' . '/src/purposes/BreakpointsInterface.php',
-        'test_command\\purposes\\Tests' => __DIR__ . '/../..' . '/src/purposes/Tests.php',
-        'test_command\\purposes\\TestsInterface' => __DIR__ . '/../..' . '/src/purposes/TestsInterface.php',
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

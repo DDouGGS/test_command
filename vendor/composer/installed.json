@@ -1,14 +1,9 @@
 {
-    "_readme": [
-        "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
-        "This file is @generated automatically"
-    ],
-    "content-hash": "7ccc941f6cdcd0acb0d78f2e38c53e0a",
     "packages": [
         {
             "name": "ddouggs/event_manager",
             "version": "v0.0.3",
+            "version_normalized": "0.0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DDouGGS/event_manager.git",
@@ -20,7 +15,9 @@
                 "reference": "2504ccabb20e96cb80a62c4100aac83f36ed8695",
                 "shasum": ""
             },
+            "time": "2026-04-01T18:32:51+00:00",
             "type": "library",
+            "installation-source": "dist",
             "autoload": {
                 "psr-4": {
                     "\\ddouggs\\event_manager\\": "src/"
@@ -41,16 +38,9 @@
                 "issues": "https://github.com/DDouGGS/event_manager/issues",
                 "source": "https://github.com/DDouGGS/event_manager/tree/v0.0.3"
             },
-            "time": "2026-04-01T18:32:51+00:00"
+            "install-path": "../ddouggs/event_manager"
         }
     ],
-    "packages-dev": [],
-    "aliases": [],
-    "minimum-stability": "dev",
-    "stability-flags": {},
-    "prefer-stable": false,
-    "prefer-lowest": false,
-    "platform": {},
-    "platform-dev": {},
-    "plugin-api-version": "2.9.0"
+    "dev": true,
+    "dev-package-names": []
 }
