@@ -1,46 +1,5 @@
 {
-    "packages": [
-        {
-            "name": "ddouggs/event_manager",
-            "version": "v0.0.3",
-            "version_normalized": "0.0.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/DDouGGS/event_manager.git",
-                "reference": "2504ccabb20e96cb80a62c4100aac83f36ed8695"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/DDouGGS/event_manager/zipball/2504ccabb20e96cb80a62c4100aac83f36ed8695",
-                "reference": "2504ccabb20e96cb80a62c4100aac83f36ed8695",
-                "shasum": ""
-            },
-            "time": "2026-04-01T18:32:51+00:00",
-            "type": "library",
-            "installation-source": "dist",
-            "autoload": {
-                "psr-4": {
-                    "\\ddouggs\\event_manager\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Douglas Gonçalves de Souza",
-                    "email": "ti.dougg@gmail.com"
-                }
-            ],
-            "description": "Dota o sistema PHP do gerênciamento de eventos nomeados",
-            "support": {
-                "issues": "https://github.com/DDouGGS/event_manager/issues",
-                "source": "https://github.com/DDouGGS/event_manager/tree/v0.0.3"
-            },
-            "install-path": "../ddouggs/event_manager"
-        }
-    ],
+    "packages": [],
     "dev": true,
     "dev-package-names": []
 }
