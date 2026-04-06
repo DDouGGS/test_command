@@ -7,5 +7,4 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'test_command\\' => array($baseDir . '/src'),
-    'ddouggs\\event_manager\\' => array($vendorDir . '/ddouggs/event_manager/src'),
 );

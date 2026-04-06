@@ -11,20 +11,12 @@ class ComposerStaticInit851d9bd5fb3099caffb2861c2c1c62cb
         array (
             'test_command\\' => 13,
         ),
-        'd' =>
-        array (
-            'ddouggs\\event_manager\\' => 22,
-        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'test_command\\' =>
         array (
             0 => __DIR__ . '/../..' . '/src',
-        ),
-        'ddouggs\\event_manager\\' =>
-        array (
-            0 => __DIR__ . '/..' . '/ddouggs/event_manager/src',
         ),
     );
 

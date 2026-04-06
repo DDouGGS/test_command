@@ -14,8 +14,5 @@
             "test_command\\": "src/"
         }
     },
-    "minimum-stability": "dev",
-    "require": {
-        "ddouggs/event_manager": "v0.*.*"
-    }
+    "minimum-stability": "dev"
 }

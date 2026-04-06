@@ -4,7 +4,7 @@
 command_line_testing.code-workspace
 
 #vendor
-#/vendor/
+/vendor/
 
 # mixed
 *.drawio.bkp
