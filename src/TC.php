@@ -79,7 +79,7 @@ abstract class TC
      * @return void
      * 
      */
-    public function assertBool($callback, $title = __FUNCTION__)
+    public static function assertBool($callback, $title = __FUNCTION__)
     {
         self::getTests()->assertBool($callback, $title);
     }
@@ -93,7 +93,7 @@ abstract class TC
      * @return void
      * 
      */
-    public function assertString($callback, $title = __FUNCTION__)
+    public static function assertString($callback, $title = __FUNCTION__)
     {
         self::getTests()->assertString($callback, $title);
     }
@@ -107,7 +107,7 @@ abstract class TC
      * @return void
      * 
      */
-    public function assertInt($callback, $title = __FUNCTION__)
+    public static function assertInt($callback, $title = __FUNCTION__)
     {
         self::getTests()->assertInt($callback, $title);
     }
@@ -120,7 +120,7 @@ abstract class TC
      * @return void
      * 
      */
-    public function assertFloat($callback, $title = __FUNCTION__)
+    public static function assertFloat($callback, $title = __FUNCTION__)
     {
         self::getTests()->assertFloat($callback, $title);
     }
@@ -134,7 +134,7 @@ abstract class TC
      * @return void
      * 
      */
-    public function assertArray($callback, $title = __FUNCTION__)
+    public static function assertArray($callback, $title = __FUNCTION__)
     {
         self::getTests()->assertArray($callback, $title);
     }
@@ -148,7 +148,7 @@ abstract class TC
      * @return void
      * 
      */
-    public function assertObject($callback, $title = __FUNCTION__)
+    public static function assertObject($callback, $title = __FUNCTION__)
     {
         self::getTests()->assertObject($callback, $title);
     }
@@ -162,7 +162,7 @@ abstract class TC
      * @return void
      * .
      */
-    public function assertResource($callback, $title = __FUNCTION__)
+    public static function assertResource($callback, $title = __FUNCTION__)
     {
         self::getTests()->assertResource($callback, $title);
     }
