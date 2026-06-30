@@ -1,8 +1,8 @@
 <?php
 
-use test_command\purposes\Archives;
-
 namespace test_command;
+
+use test_command\purposes\Archives;
 
 class Prints extends Archives
 {
