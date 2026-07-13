@@ -2,9 +2,7 @@
 
 namespace test_command;
 
-use test_command\purposes\Archives;
-
-class Prints extends Archives
+class Prints
 {
     const TEST_ERROR = "\033[35mE\033[0m";
     const TEST_PASSED = "\033[34mP\033[0m";
