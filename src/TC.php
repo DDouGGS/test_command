@@ -19,7 +19,9 @@ abstract class TC
 
     public function __construct()
     {
-        $this->setArchives(new Archives());
+        self::setArchives(new Archives());
+        self::setBreakpoints(new Breakpoints());
+        self::setTests(new Tests());
     }
 
     /**
@@ -362,7 +364,7 @@ abstract class TC
      */
     private static function getTests()
     {
-        if(!self::existsTests()){self::setTests(new Tests());}
+        if(!self::existsTests()){self::setTests(new \test_command\purposes\Tests());}
         return self::$tests;
     }
 
