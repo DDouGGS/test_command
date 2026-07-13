@@ -2,24 +2,31 @@
 /*
     tc.php 
 
-    Robô de execução do pacote.
+    RobÃ´de execuÃ§Ã£o do pacote.
 */
 namespace test_command;
 
-/* Configurações de erro
-E_ALL: Reporta todos os erros e advertências.
-E_ERROR: Reporta erros fatais em tempo de execução. Estes indicam erros que não podem ser recuperados e causam a terminação do script.
-E_WARNING: Reporta advertências em tempo de execução. Estas são não-fatais e a execução do script normalmente continua.
-E_PARSE: Reporta erros de análise. Estes são gerados por falhas no analisador enquanto o script PHP está sendo compilado.
-E_NOTICE: Reporta avisos em tempo de execução. Normalmente indicam que o script encontrou algo que pode indicar um erro, mas que também pode acontecer durante a execução normal do script.
+/* ConfiguraÃ§Ãµes de erro
+E_ALL: Reporta todos os erros e advertÃªncias.
+E_ERROR: Reporta erros fatais em tempo de execuÃ§Ã£o. Estes indicam erros que nÃ£o podem ser recuperados e causam a terminaÃ§Ã£o do script.
+E_WARNING: Reporta advertÃªncias em tempo de execuÃ§Ã£o. Estas sÃ£o nÃ£o-fatais e a execuÃ§Ã£o do script normalmente continua.
+E_PARSE: Reporta erros de anÃ¡Ã¡lise. Estes sÃ£o gerados por falhas no analisador enquanto o script PHP estÃ¡ sendo compilado.
+E_NOTICE: Reporta avisos em tempo de execuÃ§Ã£o. Normalmente indicam que o script encontrou algo que pode indicar um erro, mas que tambÃ©m pode acontecer durante a execuÃ§Ã£o normal do script.
 
 error_reporting(E_ERROR | E_WARNING | E_NOTICE);
 
 function custom_error_handler($errno, $errstr, $errfile, $errline) {
-    echo "Erro ocorrido na linha $errline do arquivo $errfile: [Número $errno] $errstr";
+    echo "Erro ocorrido na linha $errline do arquivo $errfile: [NÃºmero $errno] $errstr";
 }
 set_error_handler("custom_error_handler");
 */
+
+// inicia o pacote de testes
+require(__DIR__ . "/init.php");
+
+// testing
+require(__DIR__ .'/TC.php');
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -28,7 +35,7 @@ try{
     // config
     $arc = realpath(__DIR__ . '/../../../../') . '/test_commands.json';
     if(!file_exists($arc)){
-        throw new \Exception('Não encontrado o arquivo de configurações.');
+        throw new \Exception('NÃ£o encontrado o arquivo de configuraÃ§Ãµes.');
     }
     $cfg = array(
         'configs' => json_decode(file_get_contents($arc), true)
@@ -37,13 +44,12 @@ try{
     foreach($cfg['configs']['requires'] as $item){
         $obj = $cfg['configs']['baseFolder'] . $item;
         if(!file_exists($obj)){
-            echo "\033[35mArquivo a ser carregado NÃO existe ({$obj}}.\033[0m";
+            echo "\033[35mArquivo a ser carregado NÃƒO existe ({$obj}}.\033[0m";
             continue;
         }
         require_once($obj);
     }
-    // testing
-    require(__DIR__ .'/TC.php');
+
     TC::testing($cfg, $argv[1]);
 }catch(\Exception $e){
     echo($e->getMessage());

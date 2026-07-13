@@ -4,7 +4,7 @@ namespace test_command\purposes;
 
 use test_command\purposes\ArchivesInterface;
 
-abstract class Archives implements ArchivesInterface
+class Archives implements ArchivesInterface
 {
     const carrierReturn = "\n";
 
