@@ -82,7 +82,7 @@ class Tests extends Prints implements TestsInterface
             );
             return;
         }catch(\Exception $e){
-            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            self::asserts(sprintf('%s: %s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
             return;
         }
     }
@@ -112,7 +112,7 @@ class Tests extends Prints implements TestsInterface
             );
             return;
         }catch(\Exception $e){
-            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            self::asserts(sprintf('%s: %s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
             return;
         }
     }
@@ -142,7 +142,7 @@ class Tests extends Prints implements TestsInterface
             );
             return;
         }catch(\Exception $e){
-            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            self::asserts(sprintf('%s: %s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
             return;
         }
     }
@@ -171,7 +171,7 @@ class Tests extends Prints implements TestsInterface
             );
             return;
         }catch(\Exception $e){
-            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            self::asserts(sprintf('%s: %s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
             return;
         }
     }
@@ -201,7 +201,7 @@ class Tests extends Prints implements TestsInterface
             );
             return;
         }catch(\Exception $e){
-            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            self::asserts(sprintf('%s: %s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
             return;
         }
     }
@@ -231,7 +231,7 @@ class Tests extends Prints implements TestsInterface
             );
             return;
         }catch(\Exception $e){
-            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            self::asserts(sprintf('%s: %s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
             return;
         }
     }
@@ -261,7 +261,7 @@ class Tests extends Prints implements TestsInterface
             );
             return;
         }catch(\Exception $e){
-            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            self::asserts(sprintf('%s: %s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
             return;
         }
     }
@@ -293,7 +293,7 @@ class Tests extends Prints implements TestsInterface
             );
             return;
         }catch(\Exception $e){
-            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            self::asserts(sprintf('%s: %s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
             return;
         }
     }
@@ -322,7 +322,7 @@ class Tests extends Prints implements TestsInterface
             );
             return;
         }catch(\Exception $e){
-            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            self::asserts(sprintf('%s: %s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
             return;
         }
     }
@@ -352,7 +352,7 @@ class Tests extends Prints implements TestsInterface
             );
             return;
         }catch(\Exception $e){
-            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            self::asserts(sprintf('%s: %s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
             return;
         }
     }
@@ -382,7 +382,7 @@ class Tests extends Prints implements TestsInterface
             );
             return;
         }catch(\Exception $e){
-            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            self::asserts(sprintf('%s: %s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
             return;
         }
     }
@@ -411,7 +411,7 @@ class Tests extends Prints implements TestsInterface
             );
             return;
         }catch(\Exception $e){
-            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            self::asserts(sprintf('%s: %s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
             return;
         }
     }
@@ -440,7 +440,7 @@ class Tests extends Prints implements TestsInterface
             );
             return;
         }catch(\Exception $e){
-            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            self::asserts(sprintf('%s: %s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
             return;
         }
     }
@@ -470,7 +470,7 @@ class Tests extends Prints implements TestsInterface
             );
             return;
         }catch(\Exception $e){
-            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            self::asserts(sprintf('%s: %s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
             return;
         }
     }
@@ -500,7 +500,7 @@ class Tests extends Prints implements TestsInterface
             );
             return;
         }catch(\Exception $e){
-            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            self::asserts(sprintf('%s: %s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
             return;
         }
     }
@@ -530,7 +530,7 @@ class Tests extends Prints implements TestsInterface
             );
             return;
         }catch(\Exception $e){
-            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            self::asserts(sprintf('%s: %s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
             return;
         }
     }
@@ -560,7 +560,7 @@ class Tests extends Prints implements TestsInterface
             );
             return;
         }catch(\Exception $e){
-            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            self::asserts(sprintf('%s: %s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
             return;
         }
     }
@@ -590,7 +590,7 @@ class Tests extends Prints implements TestsInterface
             );
             return;
         }catch(\Exception $e){
-            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            self::asserts(sprintf('%s: %s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
             return;
         }
     }
@@ -619,7 +619,7 @@ class Tests extends Prints implements TestsInterface
             );
             return;
         }catch(\Exception $e){
-            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            self::asserts(sprintf('%s: %s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
             return;
         }
     }
@@ -648,7 +648,7 @@ class Tests extends Prints implements TestsInterface
             );
             return;
         }catch(\Exception $e){
-            self::asserts(sprintf('%s:%s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
+            self::asserts(sprintf('%s: %s', $title, __FUNCTION__), self::FAILED_TEST, $received, $e->getMessage());
             return;
         }
     }
@@ -676,7 +676,7 @@ class Tests extends Prints implements TestsInterface
         // asserts sequence
         $error? self::setAssertsSeq(Prints::TEST_ERROR): self::setAssertsSeq(Prints::TEST_PASSED);
         // assets;
-        self::asserts(sprintf('%s:%s', $title, $subtitle), $msg, $received);
+        self::asserts(sprintf('%s: %s', $title, $subtitle), $msg, $received);
         return;
     }
 
